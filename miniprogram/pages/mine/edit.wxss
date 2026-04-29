@@ -1,0 +1,148 @@
+/* pages/mine/edit.wxss - 编辑个人信息 */
+page {
+  background-color: #F5F6FA;
+}
+
+.edit-container {
+  min-height: 100vh;
+  background-color: #F5F6FA;
+  padding-bottom: 120rpx;
+}
+
+/* 头像区域 */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 0;
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+
+.avatar-wrapper {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E8F8F5 0%, #D5F5E3 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+  border: 4rpx solid #FFFFFF;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-text {
+  font-size: 80rpx;
+}
+
+.avatar-hint {
+  font-size: 26rpx;
+  color: #00B894;
+}
+
+/* 表单区域 */
+.form-section {
+  background-color: #FFFFFF;
+  padding: 0 30rpx;
+}
+
+.safety-section {
+  margin-top: 20rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  color: #999999;
+  padding: 24rpx 0 12rpx;
+  font-weight: 500;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  width: 180rpx;
+}
+
+.label-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.label-text {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.form-input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333333;
+  text-align: right;
+  background: none;
+  border: none;
+}
+
+.form-input[disabled] {
+  color: #999999;
+}
+
+.form-select {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.select-text {
+  font-size: 30rpx;
+  color: #333333;
+  margin-right: 12rpx;
+}
+
+.select-arrow {
+  font-size: 28rpx;
+  color: #CCCCCC;
+}
+
+.menu-arrow {
+  font-size: 28rpx;
+  color: #CCCCCC;
+}
+
+/* 保存按钮 */
+.save-section {
+  padding: 60rpx 30rpx 0;
+}
+
+.save-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #00B894 0%, #00A388 100%);
+  color: #FFFFFF;
+  font-size: 34rpx;
+  font-weight: bold;
+  padding: 28rpx 0;
+  border-radius: 50rpx;
+  border: none;
+}
+
+.save-btn::after {
+  border: none;
+}

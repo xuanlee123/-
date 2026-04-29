@@ -1,0 +1,211 @@
+/* pages/mine/collection.wxss - 我的收藏 */
+page {
+  background-color: #F5F6FA;
+}
+
+.collection-container {
+  min-height: 100vh;
+  background-color: #F5F6FA;
+  padding-bottom: 120rpx;
+}
+
+/* 标签栏 */
+.tabs-bar {
+  display: flex;
+  background-color: #FFFFFF;
+  padding: 20rpx 0;
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.tab-icon {
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+
+.tab-text {
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.tab-item.active .tab-text {
+  color: #00B894;
+  font-weight: bold;
+}
+
+/* 收藏列表 */
+.collection-list,
+.merchant-list {
+  padding: 20rpx 30rpx;
+}
+
+.collection-item,
+.merchant-item {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.item-image {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #E8F8F5;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.image-text {
+  font-size: 60rpx;
+}
+
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.item-merchant {
+  font-size: 24rpx;
+  color: #666666;
+  margin-bottom: 12rpx;
+}
+
+.item-bottom {
+  display: flex;
+  align-items: center;
+}
+
+.item-price {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FF6600;
+  margin-right: 20rpx;
+}
+
+.item-rating {
+  font-size: 24rpx;
+  color: #FF9800;
+}
+
+.item-action {
+  padding: 0 10rpx;
+}
+
+.action-icon {
+  font-size: 40rpx;
+}
+
+/* 商户收藏 */
+.merchant-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background-color: #E8F8F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.avatar-text {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #00B894;
+}
+
+.merchant-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.merchant-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.merchant-desc {
+  font-size: 24rpx;
+  color: #666666;
+  margin-bottom: 12rpx;
+}
+
+.merchant-stats {
+  display: flex;
+  gap: 20rpx;
+}
+
+.stat-item {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.merchant-action {
+  padding-left: 20rpx;
+}
+
+.merchant-action .action-btn {
+  background: linear-gradient(135deg, #00B894 0%, #00A388 100%);
+  color: #FFFFFF;
+  font-size: 26rpx;
+  padding: 16rpx 30rpx;
+  border-radius: 30rpx;
+  border: none;
+}
+
+.merchant-action .action-btn::after {
+  border: none;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 150rpx 0;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: #999999;
+  margin-bottom: 40rpx;
+}
+
+.empty-btn {
+  background: linear-gradient(135deg, #00B894 0%, #00A388 100%);
+  color: #FFFFFF;
+  font-size: 30rpx;
+  padding: 24rpx 60rpx;
+  border-radius: 40rpx;
+  border: none;
+}
+
+.empty-btn::after {
+  border: none;
+}

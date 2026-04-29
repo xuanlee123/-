@@ -1,0 +1,59 @@
+<!--pages/mine/address-edit.wxml - 地址编辑-->
+<view class="edit-container">
+  <view class="form-card">
+    <view class="form-item">
+      <text class="form-label">收货人</text>
+      <input
+        class="form-input"
+        placeholder="请输入收货人姓名"
+        value="{{name}}"
+        bindinput="onNameInput"
+        maxlength="20"
+      />
+    </view>
+    <view class="form-item">
+      <text class="form-label">联系电话</text>
+      <input
+        class="form-input"
+        type="number"
+        placeholder="请输入手机号"
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+        maxlength="11"
+      />
+    </view>
+    <view class="form-item">
+      <text class="form-label">所在地区</text>
+      <view class="region-right">
+        <text class="region-display {{region ? '' : 'placeholder'}}" wx:if="{{isEditMode && !showRegionPicker}}">
+          {{region || '请选择省市区'}}
+        </text>
+        <picker wx:if="{{!isEditMode || showRegionPicker}}" mode="region" bindchange="onRegionChange">
+          <view class="picker-value">
+            <text class="{{region ? '' : 'placeholder'}}">{{region || '请选择省市区'}}</text>
+            <text class="arrow">›</text>
+          </view>
+        </picker>
+        <text class="edit-icon" wx:if="{{isEditMode && !showRegionPicker}}" bindtap="toggleEditRegion">✏️</text>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">详细地址</text>
+      <input
+        class="form-input"
+        placeholder="请输入街道、门牌号等"
+        value="{{detail}}"
+        bindinput="onDetailInput"
+        maxlength="100"
+      />
+    </view>
+    <view class="form-item switch-item">
+      <text class="form-label">设为默认地址</text>
+      <switch checked="{{isDefault}}" bindchange="onDefaultChange" color="#00B894" />
+    </view>
+  </view>
+
+  <view class="save-bar">
+    <button class="save-btn" bindtap="saveAddress">保存地址</button>
+  </view>
+</view>

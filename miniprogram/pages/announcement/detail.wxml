@@ -1,0 +1,59 @@
+<view class="announcement-detail-container">
+  <block wx:if="{{!loading && announcement}}">
+    <!-- 公告头部 -->
+    <view class="announcement-header">
+      <view class="header-icon">
+        <text class="header-icon-text">{{announcement.urgency == 1 ? '🚨' : '📢'}}</text>
+      </view>
+      <view class="header-content">
+        <text class="announcement-title">{{announcement.title}}</text>
+        <view class="announcement-meta">
+          <text class="meta-source">{{announcement.publishTime}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 阅读统计 -->
+    <view class="stats-bar">
+      <view class="stat-item">
+        <text class="stat-icon">👁️</text>
+        <text class="stat-text">{{announcement.readCount || 0}} 阅读</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-icon">🔗</text>
+        <text class="stat-text">{{announcement.shareCount || 0}} 分享</text>
+      </view>
+      <view class="stat-item" wx:if="{{announcement.urgency == 1}}">
+        <text class="urgency-tag">紧急</text>
+      </view>
+    </view>
+
+    <!-- 公告图片 -->
+    <view class="announcement-image" wx:if="{{announcement.imageUrl}}">
+      <image src="{{announcement.imageUrl}}" mode="widthFix" bindtap="previewImage"></image>
+    </view>
+
+    <!-- 公告内容 -->
+    <view class="announcement-content">
+      <text class="content-text">{{announcement.content}}</text>
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="bottom-bar">
+      <view class="action-item" bindtap="shareAnnouncement">
+        <text class="action-icon">📤</text>
+        <text class="action-text">分享</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && !announcement}}">
+    <text class="empty-text">公告不存在</text>
+  </view>
+</view>

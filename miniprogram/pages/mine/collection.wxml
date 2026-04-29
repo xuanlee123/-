@@ -1,0 +1,112 @@
+<!--pages/mine/collection.wxml - 我的收藏-->
+<view class="collection-container">
+  <!-- 标签栏 -->
+  <view class="tabs-bar">
+    <view class="tab-item {{currentTab === 'service' ? 'active' : ''}}" bindtap="switchTab" data-tab="service">
+      <text class="tab-icon">🧹</text>
+      <text class="tab-text">服务</text>
+    </view>
+    <view class="tab-item {{currentTab === 'merchant' ? 'active' : ''}}" bindtap="switchTab" data-tab="merchant">
+      <text class="tab-icon">🏪</text>
+      <text class="tab-text">商户</text>
+    </view>
+  </view>
+
+  <!-- 服务收藏 -->
+  <view class="collection-list" wx:if="{{currentTab === 'service'}}">
+    <view class="collection-item">
+      <view class="item-image">
+        <text class="image-text">🧹</text>
+      </view>
+      <view class="item-info">
+        <text class="item-title">日常保洁服务</text>
+        <text class="item-merchant">便民家政服务</text>
+        <view class="item-bottom">
+          <text class="item-price">¥120</text>
+          <text class="item-rating">⭐ 4.9</text>
+        </view>
+      </view>
+      <view class="item-action">
+        <text class="action-icon">❤️</text>
+      </view>
+    </view>
+
+    <view class="collection-item">
+      <view class="item-image" style="background-color: #FFF3E0">
+        <text class="image-text" style="color: #FF9800">🔧</text>
+      </view>
+      <view class="item-info">
+        <text class="item-title">空调深度清洗</text>
+        <text class="item-merchant">老王维修店</text>
+        <view class="item-bottom">
+          <text class="item-price">¥180</text>
+          <text class="item-rating">⭐ 4.8</text>
+        </view>
+      </view>
+      <view class="item-action">
+        <text class="action-icon">❤️</text>
+      </view>
+    </view>
+
+    <view class="collection-item">
+      <view class="item-image" style="background-color: #FFEBEE">
+        <text class="image-text" style="color: #E91E63">❤️</text>
+      </view>
+      <view class="item-info">
+        <text class="item-title">上门健康检查</text>
+        <text class="item-merchant">健康医疗服务</text>
+        <view class="item-bottom">
+          <text class="item-price">¥200</text>
+          <text class="item-rating">⭐ 5.0</text>
+        </view>
+      </view>
+      <view class="item-action">
+        <text class="action-icon">❤️</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商户收藏 -->
+  <view class="merchant-list" wx:if="{{currentTab === 'merchant'}}">
+    <view class="merchant-item">
+      <view class="merchant-avatar">
+        <text class="avatar-text">商</text>
+      </view>
+      <view class="merchant-info">
+        <text class="merchant-name">便民家政服务</text>
+        <text class="merchant-desc">专业家政保洁团队</text>
+        <view class="merchant-stats">
+          <text class="stat-item">⭐ 4.9</text>
+          <text class="stat-item">服务 1288 次</text>
+        </view>
+      </view>
+      <view class="merchant-action">
+        <button class="action-btn">去预约</button>
+      </view>
+    </view>
+
+    <view class="merchant-item">
+      <view class="merchant-avatar" style="background-color: #FFF3E0">
+        <text class="avatar-text" style="color: #FF9800">修</text>
+      </view>
+      <view class="merchant-info">
+        <text class="merchant-name">老王维修店</text>
+        <text class="merchant-desc">家电维修专家</text>
+        <view class="merchant-stats">
+          <text class="stat-item">⭐ 4.8</text>
+          <text class="stat-item">服务 856 次</text>
+        </view>
+      </view>
+      <view class="merchant-action">
+        <button class="action-btn">去预约</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{false}}">
+    <text class="empty-icon">⭐</text>
+    <text class="empty-text">暂无收藏</text>
+    <button class="empty-btn">去逛逛</button>
+  </view>
+</view>

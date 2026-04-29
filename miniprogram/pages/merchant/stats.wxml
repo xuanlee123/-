@@ -1,0 +1,120 @@
+<!--pages/merchant/stats.wxml - 商户数据统计-->
+<view class="stats-container">
+  <!-- 加载状态 -->
+  <view class="loading-mask" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 商户入驻信息 -->
+  <view class="merchant-card">
+    <view class="merchant-header">
+      <view class="merchant-avatar">
+        <text>{{merchantInfo.name ? merchantInfo.name.substring(0, 1) : '商'}}</text>
+      </view>
+      <view class="merchant-info">
+        <view class="merchant-name-row">
+          <text class="merchant-name">{{merchantInfo.name || '商户名称'}}</text>
+          <view class="status-badge {{merchantInfo.statusClass}}">
+            <text>{{merchantInfo.statusText}}</text>
+          </view>
+        </view>
+        <text class="merchant-type">{{merchantInfo.type || '商户类型'}}</text>
+      </view>
+    </view>
+    <view class="merchant-details">
+      <view class="detail-item">
+        <text class="detail-label">联系电话</text>
+        <text class="detail-value">{{merchantInfo.phone || '-'}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">入驻时间</text>
+        <text class="detail-value">{{merchantInfo.createTime || '-'}}</text>
+      </view>
+      <view class="detail-item full-width">
+        <text class="detail-label">地址</text>
+        <text class="detail-value">{{merchantInfo.address || '-'}}</text>
+      </view>
+      <view class="detail-item full-width" wx:if="{{merchantInfo.description}}">
+        <text class="detail-label">简介</text>
+        <text class="detail-value">{{merchantInfo.description}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 核心指标 -->
+  <view class="metrics-section">
+    <view class="section-title">
+      <text class="section-icon">📊</text>
+      <text class="section-text">数据概览</text>
+    </view>
+    <view class="metrics-grid">
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background: linear-gradient(135deg, #E8F8F5 0%, #D4EFDF 100%)">
+          <text class="metric-icon">📋</text>
+        </view>
+        <text class="metric-value">{{stats.todayOrders}}</text>
+        <text class="metric-label">今日订单</text>
+      </view>
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)">
+          <text class="metric-icon">📦</text>
+        </view>
+        <text class="metric-value">{{stats.monthOrders}}</text>
+        <text class="metric-label">本月订单</text>
+      </view>
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%)">
+          <text class="metric-icon">🧹</text>
+        </view>
+        <text class="metric-value">{{stats.services}}</text>
+        <text class="metric-label">我的服务</text>
+      </view>
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD9 100%)">
+          <text class="metric-icon">⏰</text>
+        </view>
+        <text class="metric-value">{{stats.pendingOrders}}</text>
+        <text class="metric-label">待处理</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 评价概览 -->
+  <view class="evaluation-section">
+    <view class="section-title">
+      <text class="section-icon">⭐</text>
+      <text class="section-text">评价概览</text>
+    </view>
+    <view class="evaluation-card">
+      <view class="evaluation-score">
+        <text class="score-value">{{stats.averageScore}}</text>
+        <text class="score-label">平均评分</text>
+      </view>
+      <view class="evaluation-divider"></view>
+      <view class="evaluation-total">
+        <text class="total-value">{{stats.totalEvaluations}}</text>
+        <text class="total-label">收到评价</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 账户余额 -->
+  <view class="balance-section">
+    <view class="balance-card">
+      <view class="balance-header">
+        <text class="balance-title">💼 账户管理</text>
+        <text class="withdraw-btn" bindtap="goToWithdraw">提现</text>
+      </view>
+      <view class="balance-row">
+        <view class="balance-item">
+          <text class="balance-label">今日收入</text>
+          <text class="balance-value income">¥{{stats.todayIncome}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 自定义TabBar -->
+<custom-tab-bar role="merchant" active="/pages/merchant/stats" />

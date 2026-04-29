@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neighborhood.mapper.NeighborhoodMapper">
+    <select id="selectPostPage" resultType="com.neighborhood.entity.Neighborhood">
+        SELECT n.*, u.username, u.avatar as user_avatar 
+        FROM neighborhood n 
+        LEFT JOIN users u ON n.user_id = u.id 
+        WHERE n.status = 1
+        ORDER BY n.create_time DESC
+    </select>
+</mapper>

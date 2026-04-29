@@ -1,0 +1,126 @@
+<!--pages/merchant/apply.wxml - 商户入驻申请页面-->
+<view class="apply-container">
+  <!-- 步骤指示器 -->
+  <view class="steps-indicator">
+    <view class="step-item {{currentStep >= 0 ? 'active' : ''}}">
+      <view class="step-circle">1</view>
+      <text class="step-text">基本信息</text>
+    </view>
+    <view class="step-line {{currentStep >= 1 ? 'active' : ''}}"></view>
+    <view class="step-item {{currentStep >= 1 ? 'active' : ''}}">
+      <view class="step-circle">2</view>
+      <text class="step-text">认证材料</text>
+    </view>
+  </view>
+
+  <!-- 步骤1：基本信息 -->
+  <view class="form-section" wx:if="{{currentStep === 0}}">
+    <view class="form-title">商户基本信息</view>
+    
+    <view class="form-item">
+      <view class="form-label">商户名称 <text class="required">*</text></view>
+      <input class="form-input" placeholder="请输入商户名称" value="{{formData.name}}" data-field="name" bindinput="onFieldChange" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">联系人 <text class="required">*</text></view>
+      <input class="form-input" placeholder="请输入联系人姓名" value="{{formData.contactPerson}}" data-field="contactPerson" bindinput="onFieldChange" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">联系电话 <text class="required">*</text></view>
+      <input class="form-input" type="number" placeholder="请输入联系电话" value="{{formData.contactPhone}}" data-field="contactPhone" bindinput="onFieldChange" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">商户地址 <text class="required">*</text></view>
+      <input class="form-input" placeholder="请输入详细地址" value="{{formData.address}}" data-field="address" bindinput="onFieldChange" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">服务类别 <text class="required">*</text></view>
+      <picker mode="selector" range="{{categories}}" range-key="name" bindchange="onCategoryChange">
+        <view class="form-picker">
+          <text class="{{formData.categoryName ? 'picker-value' : 'picker-placeholder'}}">
+            {{formData.categoryName || '请选择服务类别'}}
+          </text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-btn-wrapper">
+      <button class="form-btn-primary" bindtap="nextStep">下一步</button>
+    </view>
+  </view>
+
+  <!-- 步骤2：认证材料 -->
+  <view class="form-section" wx:if="{{currentStep === 1}}">
+    <view class="form-title">认证材料</view>
+    
+    <view class="form-item">
+      <view class="form-label">商户简介 <text class="required">*</text></view>
+      <textarea class="form-textarea" placeholder="请简单描述您的服务内容" value="{{formData.description}}" data-field="description" bindinput="onFieldChange" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">营业执照 <text class="required">*</text></view>
+      <view class="image-upload-box" wx:if="{{!formData.licenseUrl}}" bindtap="chooseImage" data-field="licenseUrl">
+        <text class="upload-icon">+</text>
+        <text class="upload-text">点击上传营业执照</text>
+      </view>
+      <view class="image-preview" wx:else>
+        <image src="{{formData.licenseUrl}}" mode="aspectFit" class="preview-image" />
+        <view class="image-actions">
+          <text class="action-btn" bindtap="chooseImage" data-field="licenseUrl">重新上传</text>
+          <text class="action-btn delete" bindtap="clearImage" data-field="licenseUrl">删除</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">资质证明（选填）</view>
+      <view class="image-upload-box" wx:if="{{!formData.qualificationUrl}}" bindtap="chooseImage" data-field="qualificationUrl">
+        <text class="upload-icon">+</text>
+        <text class="upload-text">点击上传服务资质证明</text>
+      </view>
+      <view class="image-preview" wx:else>
+        <image src="{{formData.qualificationUrl}}" mode="aspectFit" class="preview-image" />
+        <view class="image-actions">
+          <text class="action-btn" bindtap="chooseImage" data-field="qualificationUrl">重新上传</text>
+          <text class="action-btn delete" bindtap="clearImage" data-field="qualificationUrl">删除</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-btn-wrapper">
+      <button class="form-btn-default" bindtap="prevStep">上一步</button>
+      <button class="form-btn-primary" bindtap="submitApplication">提交申请</button>
+    </view>
+  </view>
+
+  <!-- 提交成功 -->
+  <view class="success-section" wx:if="{{submitted}}">
+    <view class="success-icon">✓</view>
+    <view class="success-title">提交成功</view>
+    <view class="success-desc">您的入驻申请已提交，请等待平台审核</view>
+    <view class="success-tips">
+      <view class="tip-item">
+        <text class="tip-icon">1</text>
+        <text class="tip-text">审核结果将在1-3个工作日内完成</text>
+      </view>
+      <view class="tip-item">
+        <text class="tip-icon">2</text>
+        <text class="tip-text">审核通过后您将收到短信通知</text>
+      </view>
+      <view class="tip-item">
+        <text class="tip-icon">3</text>
+        <text class="tip-text">如有疑问请联系客服</text>
+      </view>
+    </view>
+    <view class="success-btn-wrapper">
+      <button class="success-btn-default" bindtap="goHome">返回首页</button>
+      <button class="success-btn-primary" bindtap="goBack">查看进度</button>
+    </view>
+  </view>
+</view>

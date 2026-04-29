@@ -1,0 +1,82 @@
+<view class="container">
+  <!-- 角色入口提示 -->
+  <view class="role-banner" wx:if="{{fromRole}}">
+    <text class="role-text">{{fromRoleText}}</text>
+  </view>
+
+  <!-- 标签栏 -->
+  <view class="post-tabs">
+    <view class="post-tab {{type === 0 ? 'active' : ''}}" bindtap="switchTab" data-type="0">全部</view>
+    <view class="post-tab {{type === 1 ? 'active' : ''}}" bindtap="switchTab" data-type="1">闲置交换</view>
+    <view class="post-tab {{type === 2 ? 'active' : ''}}" bindtap="switchTab" data-type="2">求助咨询</view>
+  </view>
+
+  <!-- 帖子列表 -->
+  <view class="post-list" wx:if="{{posts.length > 0}}">
+    <view class="post-item" wx:for="{{posts}}" wx:key="id" data-id="{{item.id}}" bindtap="goToDetail">
+      <view class="post-header">
+        <view class="post-avatar-placeholder">
+          <image wx:if="{{item.userAvatar}}" src="{{item.userAvatar}}" class="avatar-img" mode="aspectFill"></image>
+          <text wx:else class="avatar-text">👤</text>
+        </view>
+        <view class="post-user">
+          <text class="post-username">{{item.username || '社区用户'}}</text>
+          <text class="post-time">{{item.timeAgo}}</text>
+        </view>
+        <view class="tag {{item.type === 1 ? 'tag-primary' : item.type === 2 ? 'tag-warning' : ''}}">
+          {{item.type === 0 ? '' : item.type === 1 ? '闲置' : '求助'}}
+        </view>
+      </view>
+      <view class="post-content">
+        <text>{{item.content}}</text>
+      </view>
+      <view class="post-images" wx:if="{{item.imagesArray && item.imagesArray.length > 0}}">
+        <view class="post-image-item"
+              wx:for="{{item.imagesArray}}"
+              wx:for-item="img"
+              wx:key="index"
+              data-images="{{item.imagesArray}}"
+              data-current="{{img}}"
+              bindtap="previewImage">
+          <image src="{{img}}" mode="aspectFill" class="post-image"></image>
+        </view>
+      </view>
+      <view class="post-actions" catchtap="stopPropagation">
+        <view class="action-item {{item.isLiked ? 'liked' : ''}}"
+              data-id="{{item.id}}"
+              data-liked="{{item.isLiked}}"
+              bindtap="toggleLike">
+          <text class="action-icon">{{item.isLiked ? '❤️' : '🤍'}}</text>
+          <text class="action-count">{{item.likeCount || 0}}</text>
+        </view>
+        <view class="action-item" data-id="{{item.id}}" bindtap="goToDetail">
+          <text class="action-icon">💬</text>
+          <text class="action-count">{{item.commentCount || 0}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && posts.length === 0}}">
+    <text>暂无动态，快来发布第一条吧</text>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 没有更多 -->
+  <view class="no-more" wx:if="{{!hasMore && posts.length > 0 && !loading}}">
+    <text>没有更多了</text>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="fab" bindtap="goToPublish">
+    <text class="fab-icon">✏️</text>
+  </view>
+
+  <!-- 自定义底部导航栏 -->
+  <custom-tab-bar role="user" active="/pages/neighborhood/list"></custom-tab-bar>
+</view>

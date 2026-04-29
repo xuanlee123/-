@@ -1,0 +1,81 @@
+<!--pages/merchant/order.wxml - 商户订单管理-->
+<view class="order-container">
+  <!-- 状态标签栏 -->
+  <view class="status-tabs">
+    <view class="status-tab {{currentTab === 'all' ? 'active' : ''}}" bindtap="switchStatus" data-tab="all">
+      <text>全部</text>
+    </view>
+    <view class="status-tab {{currentTab === '0' ? 'active' : ''}}" bindtap="switchStatus" data-tab="0">
+      <text>待处理</text>
+    </view>
+    <view class="status-tab {{currentTab === '1' ? 'active' : ''}}" bindtap="switchStatus" data-tab="1">
+      <text>已接单</text>
+    </view>
+    <view class="status-tab {{currentTab === '2' ? 'active' : ''}}" bindtap="switchStatus" data-tab="2">
+      <text>服务中</text>
+    </view>
+    <view class="status-tab {{currentTab === '3' ? 'active' : ''}}" bindtap="switchStatus" data-tab="3">
+      <text>已完成</text>
+    </view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="order-list">
+    <view class="order-card" wx:for="{{orders}}" wx:key="id" bindtap="viewOrderDetail" data-id="{{item.id}}">
+      <view class="order-header">
+        <view class="order-user">
+          <view class="user-avatar">
+            <text class="avatar-text">{{item.userName ? item.userName.charAt(0) : '?'}}</text>
+          </view>
+          <view class="user-info">
+            <text class="user-name">{{item.userName || '用户'}}</text>
+            <text class="user-phone">{{item.phone || ''}}</text>
+          </view>
+        </view>
+        <text class="order-status {{item.status === 0 ? 'pending' : item.status === 1 ? 'processing' : item.status === 2 ? 'processing' : 'completed'}}">
+          {{item.status === 0 ? '待处理' : item.status === 1 ? '已接单' : item.status === 2 ? '服务中' : '已完成'}}
+        </text>
+      </view>
+
+      <view class="order-service">
+        <text class="service-name">{{item.serviceName || '服务'}}</text>
+        <text class="service-price">¥{{item.amount || item.price}}</text>
+      </view>
+
+      <view class="order-detail">
+        <view class="detail-item">
+          <text class="detail-icon">📅</text>
+          <text class="detail-text">{{item.reserveTime || item.reserveDate || ''}}</text>
+        </view>
+        <view class="detail-item" wx:if="{{item.address}}">
+          <text class="detail-icon">📍</text>
+          <text class="detail-text">{{item.address}}</text>
+        </view>
+      </view>
+
+      <view class="order-actions">
+        <view class="action-btn reject" wx:if="{{item.status === 0}}" catchtap="rejectOrder" data-id="{{item.id}}">拒单</view>
+        <view class="action-btn accept" wx:if="{{item.status === 0 || item.status === 1}}" catchtap="acceptOrder" data-id="{{item.id}}">接单</view>
+        <view class="action-btn complete" wx:if="{{item.status === 2}}" catchtap="completeOrder" data-id="{{item.id}}">完成服务</view>
+        <view class="action-btn" wx:if="{{item.status === 3}}">查看评价</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="loading-more" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+  <view class="no-more" wx:if="{{!loading && !hasMore && orders.length > 0}}">
+    <text>— 没有更多了 —</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && orders.length === 0}}">
+    <text class="empty-icon">📋</text>
+    <text class="empty-text">暂无订单</text>
+  </view>
+</view>
+
+<!-- 自定义TabBar -->
+<custom-tab-bar role="merchant" active="/pages/merchant/order" />

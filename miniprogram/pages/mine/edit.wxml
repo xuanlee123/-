@@ -1,0 +1,65 @@
+<!--pages/mine/edit.wxml - 编辑个人信息-->
+<view class="edit-container">
+  <!-- 头像区域 -->
+  <view class="avatar-section" bindtap="chooseAvatar">
+    <view class="avatar-wrapper">
+      <image wx:if="{{avatarUrl}}" src="{{avatarUrl}}" mode="aspectFill" class="avatar-img" />
+      <text wx:else class="avatar-text">👤</text>
+    </view>
+    <text class="avatar-hint">点击更换头像</text>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-section">
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-icon">👤</text>
+        <text class="label-text">昵称</text>
+      </view>
+      <input class="form-input" data-field="username" bindinput="onFieldChange" value="{{username}}" placeholder="请输入昵称" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-icon">📱</text>
+        <text class="label-text">手机号</text>
+      </view>
+      <input class="form-input" value="{{phone}}" disabled />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-icon">🏠</text>
+        <text class="label-text">所在社区</text>
+      </view>
+      <view class="form-select">
+        <text class="select-text">{{communityName}}</text>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-icon">📝</text>
+        <text class="label-text">个人简介</text>
+      </view>
+      <input class="form-input" data-field="description" bindinput="onFieldChange" value="{{description}}" placeholder="介绍一下自己" />
+    </view>
+  </view>
+
+  <!-- 安全设置 -->
+  <view class="form-section safety-section">
+    <view class="section-title">安全设置</view>
+    <view class="form-item" bindtap="goToChangePassword">
+      <view class="form-label">
+        <text class="label-icon">🔑</text>
+        <text class="label-text">修改密码</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="save-section">
+    <button class="save-btn" bindtap="saveInfo">保存修改</button>
+  </view>
+</view>

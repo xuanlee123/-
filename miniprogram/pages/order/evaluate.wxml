@@ -1,0 +1,57 @@
+<!-- pages/order/evaluate.wxml -->
+<view class="container">
+  <!-- 商户信息 -->
+  <view class="merchant-card">
+    <view class="merchant-avatar">
+      <text>🏪</text>
+    </view>
+    <view class="merchant-info">
+      <view class="merchant-name">{{merchantName}}</view>
+      <view class="service-name">{{serviceName}}</view>
+    </view>
+  </view>
+
+  <!-- 评分 -->
+  <view class="rate-card">
+    <view class="rate-header">
+      <text class="rate-label">服务评分</text>
+      <view class="stars">
+        <text class="star {{score >= 1 ? 'active' : ''}}" bindtap="setScore" data-score="1">★</text>
+        <text class="star {{score >= 2 ? 'active' : ''}}" bindtap="setScore" data-score="2">★</text>
+        <text class="star {{score >= 3 ? 'active' : ''}}" bindtap="setScore" data-score="3">★</text>
+        <text class="star {{score >= 4 ? 'active' : ''}}" bindtap="setScore" data-score="4">★</text>
+        <text class="star {{score >= 5 ? 'active' : ''}}" bindtap="setScore" data-score="5">★</text>
+      </view>
+      <text class="score-text">{{scoreText}}</text>
+    </view>
+  </view>
+
+  <!-- 评价内容 -->
+  <view class="content-card">
+    <view class="content-label">评价内容</view>
+    <textarea class="content-textarea" placeholder="分享您的服务体验，帮助更多邻居了解服务质量..." bindinput="onContentInput" value="{{content}}" maxlength="500"></textarea>
+    <view class="char-count">{{content.length || 0}}/500</view>
+  </view>
+
+  <!-- 图片上传 -->
+  <view class="images-card">
+    <view class="images-label">上传图片（选填，最多3张）</view>
+    <view class="images-grid">
+      <view class="image-item" wx:for="{{images}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"></image>
+        <view class="image-delete" bindtap="deleteImage" data-index="{{index}}">×</view>
+      </view>
+      <view class="add-image" wx:if="{{images.length < 3}}" bindtap="chooseImage">
+        <text class="add-icon">+</text>
+        <text class="add-text">添加图片</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 提交按钮 -->
+<view class="bottom-bar">
+  <button class="submit-btn" bindtap="submitEvaluation" disabled="{{submitting}}">
+    {{submitting ? '提交中...' : '提交评价'}}
+  </button>
+</view>

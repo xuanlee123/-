@@ -1,0 +1,7 @@
+<!--components/icons/icon.wxml-->
+<!-- SVG 图标组件 - 微信小程序 emoji/图标解决方案 -->
+<template name="icon">
+  <view class="icon-wrapper" style="{{size ? 'font-size:' + size + 'rpx;' : ''}}">
+    <image class="icon-svg" src="{{src}}" mode="aspectFit" />
+  </view>
+</template>

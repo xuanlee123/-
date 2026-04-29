@@ -1,0 +1,45 @@
+/* iconfont.wxss - 图标字体 */
+/* 引入 iconfont 图标字体 */
+@font-face {
+  font-family: 'iconfont';
+  src: url('https://at.alicdn.com/t/font_xxxxx.ttf') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 常用图标 Unicode */
+.icon-home::before { content: "\e600"; }
+.icon-neighbor::before { content: "\e601"; }
+.icon-order::before { content: "\e602"; }
+.icon-mine::before { content: "\e603"; }
+.icon-like::before { content: "\e604"; }
+.icon-like-fill::before { content: "\e605"; }
+.icon-comment::before { content: "\e606"; }
+.icon-search::before { content: "\e607"; }
+.icon-service::before { content: "\e608"; }
+.icon-activity::before { content: "\e609"; }
+.icon-announcement::before { content: "\e60a"; }
+.icon-clean::before { content: "\e60b"; }
+.icon-repair::before { content: "\e60c"; }
+.icon-fresh::before { content: "\e60d"; }
+.icon-medical::before { content: "\e60e"; }
+.icon-education::before { content: "\e60f"; }
+.icon-more::before { content: "\e610"; }
+.icon-address::before { content: "\e611"; }
+.icon-coupon::before { content: "\e612"; }
+.icon-star::before { content: "\e613"; }
+.icon-help::before { content: "\e614"; }
+.icon-settings::before { content: "\e615"; }
+.icon-bike::before { content: "\e616"; }
+.icon-box::before { content: "\e617"; }
+.icon-heart::before { content: "\e618"; }
+.icon-question::before { content: "\e619"; }
+.icon-sports::before { content: "\e61a"; }
+.icon-festival::before { content: "\e61b"; }
+.icon-health::before { content: "\e61c"; }

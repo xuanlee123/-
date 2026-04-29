@@ -1,0 +1,50 @@
+<!--pages/activity/list.wxml-->
+<view class="container">
+  <!-- 活动列表 -->
+  <view class="activity-list">
+    <view class="activity-item" wx:for="{{activities}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <view class="activity-cover">
+        <image wx:if="{{item.displayImage}}" src="{{item.displayImage}}" mode="aspectFill" class="cover-img" />
+        <view wx:else class="cover-placeholder">
+          <text class="cover-icon">🎉</text>
+        </view>
+        <view class="activity-status-tag status-{{item.status}}">{{item.statusText}}</view>
+      </view>
+      <view class="activity-body">
+        <view class="activity-title-row">
+          <text class="activity-title">{{item.title}}</text>
+        </view>
+        <view class="activity-desc">{{item.contentPreview}}</view>
+        <view class="activity-meta">
+          <view class="meta-item">
+            <text class="meta-icon">📅</text>
+            <text class="meta-text">{{item.startTimeStr}}</text>
+          </view>
+          <view class="meta-item">
+            <text class="meta-icon">📍</text>
+            <text class="meta-text">{{item.location || item.address || '待定'}}</text>
+          </view>
+          <view class="meta-item">
+            <text class="meta-icon">👥</text>
+            <text class="meta-text">{{item.currentPeople}} / {{item.maxPeople > 0 ? item.maxPeople : '不限'}} 人</text>
+          </view>
+        </view>
+        <view class="activity-footer">
+          <view class="signup-btn {{item.status != 1 || (item.maxPeople > 0 && item.currentPeople >= item.maxPeople) ? 'disabled' : ''}}" catchtap="signupActivity" data-id="{{item.id}}">
+            {{item.status == 3 ? '已结束' : item.status == 2 ? '进行中' : item.status == 0 ? '已下架' : (item.maxPeople > 0 && item.currentPeople >= item.maxPeople) ? '已满' : '立即报名'}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+  <view class="empty-state" wx:if="{{!loading && activities.length === 0}}">
+    <text class="empty-icon">🎊</text>
+    <text class="empty-text">暂无活动</text>
+    <text class="empty-hint">敬请期待更多精彩活动</text>
+  </view>
+</view>

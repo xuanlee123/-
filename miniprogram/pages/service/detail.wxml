@@ -1,0 +1,101 @@
+<!--pages/service/detail.wxml - 服务详情-->
+<view class="service-detail-container">
+  <!-- 服务轮播图 -->
+  <swiper class="service-swiper" indicator-dots indicator-color="rgba(0,0,0,0.3)" indicator-active-color="#2AA198" autoplay circular>
+    <swiper-item wx:for="{{serviceImages}}" wx:key="index" bindtap="previewImages" data-url="{{item}}">
+      <image class="swiper-image" src="{{item}}" mode="aspectFill" />
+    </swiper-item>
+    <swiper-item wx:if="{{serviceImages.length === 0}}">
+      <view class="swiper-image-box">
+        <text class="swiper-image-text">🧹</text>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 服务信息 -->
+  <view class="service-info-section">
+    <view class="price-row">
+      <view class="price-wrap">
+        <text class="price-symbol">¥</text>
+        <text class="service-price">{{service.price}}</text>
+      </view>
+      <view class="service-tag">{{service.categoryName || '服务'}}</view>
+    </view>
+    <text class="service-title">{{service.name}}</text>
+    <view class="service-stats">
+      <text class="stat-item" wx:if="{{service.isHot}}">🔥 热门</text>
+      <text class="stat-item">⭐ {{service.rating || '5.0'}}分</text>
+      <text class="stat-item">📝 {{service.commentCount || 0}}条评价</text>
+    </view>
+  </view>
+
+  <!-- 商户信息 -->
+  <view class="merchant-section">
+    <view class="merchant-info">
+      <view class="merchant-avatar">
+        <text class="merchant-avatar-text">{{service.merchantName ? service.merchantName.charAt(0) : '商'}}</text>
+      </view>
+      <view class="merchant-detail">
+        <text class="merchant-name">{{service.merchantName || '官方服务'}}</text>
+        <text class="merchant-desc">{{service.merchantDesc || '专业服务团队'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务描述 -->
+  <view class="desc-section">
+    <view class="section-title-row">
+      <text class="section-title-icon">📋</text>
+      <text class="section-title">服务详情</text>
+    </view>
+    <view class="desc-content">
+      <text class="desc-text">{{service.description || '暂无服务详情描述'}}</text>
+    </view>
+    <view class="desc-content" style="margin-top: 20rpx;" wx:if="{{service.duration}}">
+      <text class="desc-text">【服务时长】{{service.duration}}</text>
+    </view>
+    <view class="desc-content" style="margin-top: 8rpx;" wx:if="{{service.serviceScope}}">
+      <text class="desc-text">【服务范围】{{service.serviceScope}}</text>
+    </view>
+  </view>
+
+  <!-- 用户评价 -->
+  <view class="comment-section">
+    <view class="section-title-row">
+      <text class="section-title-icon">💬</text>
+      <text class="section-title">用户评价</text>
+      <text class="section-more" bindtap="goToComments">查看全部 ></text>
+    </view>
+    <view class="comment-empty" wx:if="{{comments.length === 0}}">
+      <text class="comment-empty-text">暂无评价</text>
+    </view>
+    <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+      <view class="comment-header">
+        <view class="comment-avatar">
+          <text class="comment-avatar-text">{{item.userName ? item.userName.charAt(0) : '用'}}</text>
+        </view>
+        <view class="comment-user">
+          <text class="comment-username">{{item.userName || '匿名用户'}}</text>
+          <view class="comment-rating">
+            <text class="star">{{item.rating >= 1 ? '⭐' : '☆'}}{{item.rating >= 2 ? '⭐' : '☆'}}{{item.rating >= 3 ? '⭐' : '☆'}}{{item.rating >= 4 ? '⭐' : '☆'}}{{item.rating >= 5 ? '⭐' : '☆'}}</text>
+          </view>
+        </view>
+        <text class="comment-time">{{item.createTime}}</text>
+      </view>
+      <text class="comment-content">{{item.content || '好评！'}}</text>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="bottom-actions">
+      <view class="action-item" bindtap="toggleFavorite">
+        <text class="action-icon">{{isFavorite ? '❤️' : '🤍'}}</text>
+        <text class="action-label">{{isFavorite ? '已收藏' : '收藏'}}</text>
+      </view>
+    </view>
+    <view class="bottom-btns">
+      <button class="btn-book" bindtap="createOrder">立即预约</button>
+    </view>
+  </view>
+</view>

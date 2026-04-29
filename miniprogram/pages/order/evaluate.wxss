@@ -1,0 +1,222 @@
+/* pages/order/evaluate.wxss */
+page {
+  background-color: var(--bg-page);
+}
+
+.container {
+  min-height: 100vh;
+  padding: 20rpx 30rpx;
+  padding-bottom: 180rpx;
+}
+
+.merchant-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.merchant-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: var(--bg-gray);
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+}
+
+.merchant-info {
+  flex: 1;
+}
+
+.merchant-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8rpx;
+}
+
+.service-name {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.rate-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.rate-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.rate-label {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  margin-right: 20rpx;
+}
+
+.stars {
+  display: flex;
+  gap: 12rpx;
+}
+
+.star {
+  font-size: 48rpx;
+  color: #ddd;
+  transition: all 0.2s;
+}
+
+.star.active {
+  color: #ffb800;
+}
+
+.score-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  margin-left: 20rpx;
+}
+
+.content-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.content-label {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  margin-bottom: 20rpx;
+}
+
+.content-textarea {
+  width: 100%;
+  min-height: 200rpx;
+  padding: 20rpx;
+  background: var(--bg-gray);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+  margin-top: 12rpx;
+}
+
+.images-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.images-label {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  margin-bottom: 20rpx;
+}
+
+.images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.image-item {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 12rpx;
+  position: relative;
+}
+
+.image-item image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+}
+
+.image-delete {
+  position: absolute;
+  top: -12rpx;
+  right: -12rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 12rpx;
+  background: var(--bg-gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx dashed var(--border-color);
+}
+
+.add-icon {
+  font-size: 60rpx;
+  color: var(--text-placeholder);
+  margin-bottom: 8rpx;
+}
+
+.add-text {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.submit-btn::after {
+  border: none;
+}
+
+.submit-btn[disabled] {
+  background: #ccc;
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neighborhood.mapper.OrderMapper">
+    <select id="selectUserOrders" resultType="com.neighborhood.entity.Order">
+        SELECT o.*, s.name as service_name, m.name as merchant_name
+        FROM orders o
+        LEFT JOIN service s ON o.service_id = s.id
+        LEFT JOIN merchant m ON o.merchant_id = m.id
+        WHERE o.user_id = #{userId}
+        ORDER BY o.create_time DESC
+    </select>
+
+    <select id="selectMerchantOrders" resultType="com.neighborhood.entity.Order">
+        SELECT o.*, s.name as service_name, u.username as user_name,
+               u.phone as phone, CONCAT(a.region, a.detail) as address, a.name as contact_name,
+               a.phone as contact_phone
+        FROM orders o
+        LEFT JOIN service s ON o.service_id = s.id
+        LEFT JOIN users u ON o.user_id = u.id
+        LEFT JOIN address a ON o.address_id = a.id
+        <where>
+            <if test="merchantId != null">o.merchant_id = #{merchantId}</if>
+            <if test="status != null"> AND o.status = #{status}</if>
+        </where>
+        ORDER BY o.create_time DESC
+    </select>
+
+    <select id="selectAdminOrders" resultType="com.neighborhood.entity.Order">
+        SELECT o.*, m.name as merchant_name, u.username as user_name,
+               a.name as address_name, a.phone as address_phone, a.region as address_region,
+               a.detail as address_detail, CONCAT(a.region, a.detail) as address,
+               u.phone as phone
+        FROM orders o
+        LEFT JOIN merchant m ON o.merchant_id = m.id
+        LEFT JOIN users u ON o.user_id = u.id
+        LEFT JOIN address a ON o.address_id = a.id
+        <where>
+            <if test="status != null">o.status = #{status}</if>
+        </where>
+        ORDER BY o.create_time DESC
+    </select>
+</mapper>

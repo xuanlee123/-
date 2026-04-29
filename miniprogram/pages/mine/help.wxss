@@ -1,0 +1,86 @@
+/* pages/mine/help.wxss - 帮助中心 */
+page {
+  background-color: #F5F6FA;
+}
+
+.help-container {
+  min-height: 100vh;
+  background-color: #F5F6FA;
+  padding: 20rpx 24rpx;
+  padding-bottom: 120rpx;
+}
+
+.help-list {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.help-item {
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.help-item:last-child {
+  border-bottom: none;
+}
+
+.help-q {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  gap: 16rpx;
+}
+
+.q-icon {
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #00B894;
+  color: #FFFFFF;
+  font-size: 22rpx;
+  font-weight: bold;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.q-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.q-arrow {
+  font-size: 24rpx;
+  color: #CCCCCC;
+  transition: transform 0.2s;
+}
+
+.help-a {
+  display: flex;
+  padding: 0 30rpx 30rpx 86rpx;
+  gap: 16rpx;
+  background-color: #F9F9F9;
+}
+
+.a-icon {
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #E67E22;
+  color: #FFFFFF;
+  font-size: 22rpx;
+  font-weight: bold;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.a-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 1.8;
+}

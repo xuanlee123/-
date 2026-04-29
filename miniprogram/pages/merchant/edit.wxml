@@ -1,0 +1,71 @@
+<!--pages/merchant/edit.wxml - 商户编辑信息-->
+<view class="edit-container">
+  <!-- 头像区域 -->
+  <view class="avatar-section" bindtap="chooseAvatar">
+    <view class="avatar-wrapper">
+      <image wx:if="{{avatarUrl}}" src="{{avatarUrl}}" mode="aspectFill" class="avatar-img" />
+      <text wx:else class="avatar-text">🏪</text>
+    </view>
+    <text class="avatar-hint">点击更换头像</text>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-section">
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-icon">🏪</text>
+        <text class="label-text">商户名称</text>
+      </view>
+      <input class="form-input" data-field="name" bindinput="onFieldChange" value="{{name}}" placeholder="请输入商户名称" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-icon">🏷️</text>
+        <text class="label-text">商户类型</text>
+      </view>
+      <input class="form-input" data-field="type" bindinput="onFieldChange" value="{{type}}" placeholder="如：家政服务、维修服务" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-icon">📱</text>
+        <text class="label-text">联系电话</text>
+      </view>
+      <input class="form-input" data-field="phone" bindinput="onFieldChange" value="{{phone}}" placeholder="请输入联系电话" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-icon">📍</text>
+        <text class="label-text">商户地址</text>
+      </view>
+      <input class="form-input" data-field="address" bindinput="onFieldChange" value="{{address}}" placeholder="请输入商户地址" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label align-top">
+        <text class="label-icon">📝</text>
+        <text class="label-text">商户简介</text>
+      </view>
+      <textarea class="form-textarea" data-field="description" bindinput="onFieldChange" value="{{description}}" placeholder="介绍一下您的商户服务" maxlength="200" />
+    </view>
+  </view>
+
+  <!-- 安全设置 -->
+  <view class="form-section safety-section">
+    <view class="section-title">安全设置</view>
+    <view class="form-item" bindtap="goToChangePassword">
+      <view class="form-label">
+        <text class="label-icon">🔑</text>
+        <text class="label-text">修改密码</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="save-section">
+    <button class="save-btn" bindtap="saveInfo">保存修改</button>
+  </view>
+</view>

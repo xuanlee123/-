@@ -1,0 +1,88 @@
+/* pages/merchant/settings.wxss - 商户设置 */
+page {
+  background-color: #F5F6FA;
+}
+
+.settings-container {
+  min-height: 100vh;
+  background-color: #F5F6FA;
+  padding-top: 20rpx;
+  padding-bottom: 120rpx;
+}
+
+.menu-section {
+  background-color: #FFFFFF;
+  margin: 0 24rpx 20rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 30rpx;
+  background-color: #F8F9FA;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.title-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.title-text {
+  font-size: 26rpx;
+  color: #999;
+  font-weight: 500;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx 30rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.item-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.item-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.item-arrow {
+  font-size: 28rpx;
+  color: #CCCCCC;
+}
+
+.item-version {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.logout-section {
+  padding: 60rpx 24rpx 0;
+}
+
+.logout-btn {
+  width: 100%;
+  background-color: #FFFFFF;
+  color: #E74C3C;
+  font-size: 32rpx;
+  font-weight: 500;
+  padding: 28rpx 0;
+  border-radius: 20rpx;
+  border: none;
+}
+
+.logout-btn::after {
+  border: none;
+}

@@ -1,0 +1,116 @@
+<!--pages/order/detail.wxml - 订单详情-->
+<view class="order-detail-container">
+  <!-- 订单状态 -->
+  <view class="order-status-section">
+    <view class="status-icon-box">
+      <text class="status-icon">{{order.status === 0 ? '⏰' : order.status === 1 ? '📋' : order.status === 2 ? '🔧' : order.status === 3 ? '✅' : '❌'}}</text>
+    </view>
+    <view class="status-info">
+      <text class="status-text">{{statusText[order.status] || '未知状态'}}</text>
+      <text class="status-hint" wx:if="{{order.status === 0}}">请在30分钟内完成支付</text>
+      <text class="status-hint" wx:elif="{{order.status === 1}}">商户将在24小时内接单</text>
+      <text class="status-hint" wx:elif="{{order.status === 2}}">服务正在进行中</text>
+      <text class="status-hint" wx:elif="{{order.status === 3}}">服务已完成，感谢您的使用</text>
+    </view>
+  </view>
+
+  <!-- 预约信息 -->
+  <view class="info-section">
+    <view class="section-header">
+      <text class="section-icon">📅</text>
+      <text class="section-title">预约信息</text>
+    </view>
+    <view class="info-content">
+      <view class="info-row">
+        <text class="info-label">预约时间</text>
+        <text class="info-value">{{order.reserveTime || order.reserveDate || '待确认'}}</text>
+      </view>
+      <view class="info-row" wx:if="{{order.remark}}">
+        <text class="info-label">备注</text>
+        <text class="info-value">{{order.remark}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务信息 -->
+  <view class="info-section">
+    <view class="section-header">
+      <text class="section-icon">🧹</text>
+      <text class="section-title">服务信息</text>
+    </view>
+    <view class="service-card" bindtap="goToService">
+      <view class="service-image-box">
+        <text class="service-image-text">🧹</text>
+      </view>
+      <view class="service-info">
+        <text class="service-name">{{order.serviceName || '服务'}}</text>
+        <text class="service-merchant">{{order.merchantName || '商户'}}</text>
+        <text class="service-time">预约时间：{{order.reserveTime || order.reserveDate}}</text>
+      </view>
+      <view class="service-price">¥{{order.amount || order.price}}</view>
+    </view>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="info-section">
+    <view class="section-header">
+      <text class="section-icon">📝</text>
+      <text class="section-title">订单信息</text>
+    </view>
+    <view class="info-content">
+      <view class="info-row">
+        <text class="info-label">订单编号</text>
+        <text class="info-value">{{order.orderNo || order.id}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">下单时间</text>
+        <text class="info-value">{{order.createTime}}</text>
+      </view>
+      <view class="info-row" wx:if="{{order.payTime}}">
+        <text class="info-label">支付时间</text>
+        <text class="info-value">{{order.payTime}}</text>
+      </view>
+      <view class="info-row" wx:if="{{order.payMethod}}">
+        <text class="info-label">支付方式</text>
+        <text class="info-value">{{order.payMethod === 'wechat' ? '微信支付' : order.payMethod === 'balance' ? '余额支付' : '未支付'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 金额明细 -->
+  <view class="info-section">
+    <view class="section-header">
+      <text class="section-icon">💰</text>
+      <text class="section-title">金额明细</text>
+    </view>
+    <view class="info-content">
+      <view class="info-row">
+        <text class="info-label">服务费用</text>
+        <text class="info-value">¥{{order.amount || order.price || 0}}</text>
+      </view>
+      <view class="info-row total-row">
+        <text class="info-label">合计</text>
+        <text class="info-value total-price">¥{{order.amount || order.price || 0}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar" wx:if="{{order.status === 0}}">
+    <view class="bottom-left">
+      <text class="real-pay-label">实付款</text>
+      <text class="real-pay-price">¥{{order.amount || order.price || 0}}</text>
+    </view>
+    <view class="bottom-right">
+      <button class="btn-cancel" bindtap="cancelOrder">取消订单</button>
+      <button class="btn-pay" bindtap="payOrder">去支付</button>
+    </view>
+  </view>
+
+  <!-- 已完成订单 - 评价入口 -->
+  <view class="bottom-bar" wx:if="{{order.status === 3 && !order.evaluated}}">
+    <view class="bottom-right single">
+      <button class="btn-evaluate" bindtap="goToEvaluate">立即评价</button>
+    </view>
+  </view>
+</view>

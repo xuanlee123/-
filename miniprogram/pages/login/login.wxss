@@ -1,0 +1,182 @@
+/* pages/login/login.wxss - 论文风格登录页 (完全匹配)*/
+page {
+  background-color: #2D3436;
+  height: 100%;
+}
+
+.login-container {
+  min-height: 100vh;
+  background-color: #2D3436;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部区域 */
+.header-section {
+  padding: 140rpx 0 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-wrapper {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #00B894;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+
+.logo-icon {
+  font-size: 80rpx;
+}
+
+.app-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 16rpx;
+  letter-spacing: 6rpx;
+}
+
+.app-subtitle {
+  font-size: 22rpx;
+  color: #B2BEC3;
+  letter-spacing: 3rpx;
+}
+
+/* 表单区域 */
+.form-section {
+  flex: 1;
+  padding: 0 60rpx;
+}
+
+/* 角色选择器 */
+.role-selector {
+  margin-bottom: 40rpx;
+}
+
+.picker-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #636E72;
+  border-radius: 8rpx;
+  padding: 30rpx;
+}
+
+.picker-label {
+  font-size: 28rpx;
+  color: #B2BEC3;
+}
+
+.picker-value {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.picker-value text:first-child {
+  font-size: 30rpx;
+  color: #FFFFFF;
+}
+
+.picker-arrow {
+  font-size: 22rpx;
+  color: #B2BEC3;
+}
+
+/* 输入框组 */
+.input-group {
+  margin-bottom: 32rpx;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  background-color: #636E72;
+  border-radius: 8rpx;
+  padding: 0 30rpx;
+  height: 100rpx;
+}
+
+.input-prefix {
+  font-size: 32rpx;
+  color: #B2BEC3;
+  margin-right: 20rpx;
+  font-weight: bold;
+  min-width: 60rpx;
+}
+
+.input-control {
+  flex: 1;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  height: 100%;
+}
+
+.input-control::placeholder {
+  color: #B2BEC3;
+}
+
+/* 登录按钮 */
+.btn-login {
+  width: 100%;
+  height: 100rpx;
+  background-color: #00B894;
+  color: #FFFFFF;
+  font-size: 34rpx;
+  font-weight: bold;
+  border-radius: 8rpx;
+  border: none;
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 8rpx;
+}
+
+.btn-login::after {
+  border: none;
+}
+
+/* 注册链接 */
+.register-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40rpx;
+  gap: 8rpx;
+}
+
+.link-hint {
+  font-size: 26rpx;
+  color: #B2BEC3;
+}
+
+.link-action {
+  font-size: 26rpx;
+  color: #00B894;
+}
+
+/* 底部区域 */
+.footer-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx 0 60rpx;
+  gap: 6rpx;
+}
+
+.footer-text {
+  font-size: 20rpx;
+  color: #636E72;
+}
+
+.footer-link {
+  font-size: 20rpx;
+  color: #00B894;
+}

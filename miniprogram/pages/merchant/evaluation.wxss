@@ -1,0 +1,254 @@
+/* pages/merchant/evaluation.wxss */
+.container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 20rpx;
+}
+
+.stats-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  color: #fff;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.score-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid rgba(255,255,255,0.3);
+}
+
+.score-value {
+  font-size: 56rpx;
+  font-weight: bold;
+}
+
+.score-stars {
+  font-size: 36rpx;
+}
+
+.stats-detail {
+  display: flex;
+  justify-content: center;
+  gap: 30rpx;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.tab-bar {
+  display: flex;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 8rpx;
+  margin-bottom: 20rpx;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  border-radius: 12rpx;
+  transition: all 0.3s;
+}
+
+.tab-item.active {
+  background: #667eea;
+  color: #fff;
+}
+
+.eval-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.eval-item {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.eval-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: #eee;
+}
+
+.user-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.eval-time {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.stars {
+  color: #ffb800;
+  font-size: 32rpx;
+}
+
+.eval-content {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+
+.eval-images {
+  display: flex;
+  gap: 12rpx;
+  margin-bottom: 16rpx;
+  flex-wrap: wrap;
+}
+
+.eval-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  object-fit: cover;
+}
+
+.reply-section {
+  background: #f8f8f8;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-top: 16rpx;
+}
+
+.reply-label {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.reply-content {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 1.5;
+}
+
+.reply-time {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.reply-btn {
+  margin-top: 16rpx;
+  padding: 12rpx 24rpx;
+  background: #667eea;
+  color: #fff;
+  border-radius: 32rpx;
+  font-size: 24rpx;
+  display: inline-block;
+}
+
+.reply-form {
+  margin-top: 16rpx;
+}
+
+.reply-input {
+  background: #fff;
+  border: 1rpx solid #eee;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  min-height: 120rpx;
+  text-align: left;
+}
+
+.reply-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20rpx;
+  margin-top: 16rpx;
+}
+
+.cancel-btn, .submit-btn {
+  padding: 12rpx 32rpx;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+}
+
+.cancel-btn {
+  background: #eee;
+  color: #666;
+}
+
+.submit-btn {
+  background: #667eea;
+  color: #fff;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.loading {
+  text-align: center;
+  padding: 40rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+
+.pending-tag {
+  background: #fff3e0;
+  color: #ff9800;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+}

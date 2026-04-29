@@ -1,0 +1,157 @@
+<!--pages/admin/data.wxml - 管理员数据页面-->
+<view class="data-container">
+  <!-- 概览统计 -->
+  <view class="overview-section">
+    <view class="overview-card">
+      <view class="overview-header">
+        <text class="overview-title">📊 运营数据总览</text>
+      </view>
+      <view class="overview-date">{{currentDate}}</view>
+    </view>
+  </view>
+
+  <!-- 核心指标 -->
+  <view class="metrics-section">
+    <view class="metrics-grid">
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background-color: #E8F8F5">
+          <text class="metric-icon">📋</text>
+        </view>
+        <text class="metric-value">{{stats.todayOrders}}</text>
+        <text class="metric-label">今日订单</text>
+      </view>
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background-color: #FFF3E0">
+          <text class="metric-icon">👥</text>
+        </view>
+        <text class="metric-value">{{stats.users}}</text>
+        <text class="metric-label">用户总数</text>
+      </view>
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background-color: #E3F2FD">
+          <text class="metric-icon">🏪</text>
+        </view>
+        <text class="metric-value">{{stats.merchants}}</text>
+        <text class="metric-label">商户总数</text>
+      </view>
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background-color: #F3E5F5">
+          <text class="metric-icon">💰</text>
+        </view>
+        <text class="metric-value">¥{{stats.todayIncome}}</text>
+        <text class="metric-label">今日收入</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单统计 -->
+  <view class="stats-card-section">
+    <view class="section-header">
+      <text class="section-title">📋 订单统计</text>
+    </view>
+    <view class="stats-card-grid">
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.pendingOrders}}</text>
+        <text class="stats-card-label">待处理订单</text>
+      </view>
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.processingOrders}}</text>
+        <text class="stats-card-label">进行中订单</text>
+      </view>
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.completedOrders}}</text>
+        <text class="stats-card-label">已完成订单</text>
+      </view>
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.complaints}}</text>
+        <text class="stats-card-label">投诉订单</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 邻里圈统计 -->
+  <view class="stats-card-section">
+    <view class="section-header">
+      <text class="section-title">🌐 邻里圈统计</text>
+    </view>
+    <view class="stats-card-grid">
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.posts}}</text>
+        <text class="stats-card-label">帖子总数</text>
+      </view>
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.comments}}</text>
+        <text class="stats-card-label">评论总数</text>
+      </view>
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.reports}}</text>
+        <text class="stats-card-label">举报数</text>
+      </view>
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.activities}}</text>
+        <text class="stats-card-label">活动数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 收入趋势 -->
+  <view class="trend-section">
+    <view class="section-header">
+      <text class="section-title">📈 近7天订单趋势</text>
+    </view>
+    <view class="trend-chart">
+      <view class="chart-bars">
+        <view class="bar-item" wx:for="{{weekOrders}}" wx:key="index">
+          <view class="bar" style="height: {{item.height}}%"></view>
+          <text class="bar-label">{{item.day}}</text>
+          <text class="bar-value">{{item.count}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务统计 -->
+  <view class="stats-card-section">
+    <view class="section-header">
+      <text class="section-title">🛍️ 服务统计</text>
+    </view>
+    <view class="stats-card-grid">
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.services}}</text>
+        <text class="stats-card-label">服务总数</text>
+      </view>
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.coupons}}</text>
+        <text class="stats-card-label">优惠券数</text>
+      </view>
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.announcements}}</text>
+        <text class="stats-card-label">公告数</text>
+      </view>
+      <view class="stats-card-item">
+        <text class="stats-card-value">{{stats.monthIncome}}</text>
+        <text class="stats-card-label">本月收入</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 管理员固定底部导航栏 -->
+  <view class="admin-tabbar">
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="index">
+      <text class="admin-tabbar-icon">🏠</text>
+      <text class="admin-tabbar-text">工作台</text>
+    </view>
+    <view class="admin-tabbar-item active">
+      <text class="admin-tabbar-icon">📊</text>
+      <text class="admin-tabbar-text">数据</text>
+    </view>
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="order">
+      <text class="admin-tabbar-icon">📋</text>
+      <text class="admin-tabbar-text">订单</text>
+    </view>
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="mine">
+      <text class="admin-tabbar-icon">👤</text>
+      <text class="admin-tabbar-text">我的</text>
+    </view>
+  </view>
+</view>

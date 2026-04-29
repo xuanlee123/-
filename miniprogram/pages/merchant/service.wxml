@@ -1,0 +1,58 @@
+<!--pages/merchant/service.wxml - 商户服务管理-->
+<view class="service-container">
+  <!-- 头部 -->
+  <view class="header-bar">
+    <text class="page-title">服务管理</text>
+    <view class="btn-add" bindtap="goToAdd">
+      <text class="add-icon">➕</text>
+      <text class="add-text">新增服务</text>
+    </view>
+  </view>
+
+  <!-- 服务列表 -->
+  <view class="service-list">
+    <view class="service-card" wx:for="{{services}}" wx:key="id">
+      <image class="service-image-box" src="{{item.displayImage}}" mode="aspectFill" />
+      <view class="service-info">
+        <view class="service-header">
+          <text class="service-name">{{item.name}}</text>
+          <view class="service-status {{item.status === 1 ? 'online' : 'offline'}}">
+            {{item.status === 1 ? '已上架' : '已下架'}}
+          </view>
+        </view>
+        <view class="service-meta">
+          <text class="service-price">¥{{item.price}}</text>
+          <text class="service-sales">已售 {{item.sales || 0}}</text>
+        </view>
+      </view>
+      <view class="service-actions">
+        <view class="action-btn {{item.status === 1 ? '' : 'online-btn'}}" bindtap="toggleStatus" data-id="{{item.id}}">
+          <text class="action-icon">{{item.status === 1 ? '📴' : '📤'}}</text>
+          <text class="action-text">{{item.status === 1 ? '下架' : '上架'}}</text>
+        </view>
+        <view class="action-btn" bindtap="editService" data-id="{{item.id}}">
+          <text class="action-icon">✏️</text>
+          <text class="action-text">编辑</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="loading-more" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+  <view class="no-more" wx:if="{{!loading && !hasMore && services.length > 0}}">
+    <text>— 没有更多了 —</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && services.length === 0}}">
+    <text class="empty-icon">📦</text>
+    <text class="empty-text">暂无服务</text>
+    <button class="btn-add-empty" bindtap="goToAdd">添加服务</button>
+  </view>
+</view>
+
+<!-- 自定义TabBar -->
+<custom-tab-bar role="merchant" active="/pages/merchant/service" />

@@ -1,0 +1,89 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/neighborhood/list",
+    "pages/order/list",
+    "pages/order/create",
+    "pages/order/detail",
+    "pages/order/pay",
+    "pages/service/list",
+    "pages/service/detail",
+    "pages/neighborhood/detail",
+    "pages/neighborhood/publish",
+    "pages/activity/list",
+    "pages/activity/detail",
+    "pages/announcement/list",
+    "pages/announcement/detail",
+    "pages/mine/mine",
+    "pages/mine/edit",
+    "pages/mine/password",
+    "pages/mine/settings",
+    "pages/mine/help",
+    "pages/mine/address",
+    "pages/mine/address-edit",
+    "pages/mine/collection",
+    "pages/mine/coupon",
+    "pages/merchant/index",
+    "pages/merchant/order",
+    "pages/merchant/service",
+    "pages/merchant/stats",
+    "pages/merchant/workbench",
+    "pages/merchant/mine",
+    "pages/merchant/apply",
+    "pages/merchant/evaluation",
+    "pages/merchant/edit",
+    "pages/merchant/settings",
+    "pages/merchant/help",
+    "pages/order/evaluate",
+    "pages/merchant/service-add",
+    "pages/admin/index",
+    "pages/admin/user",
+    "pages/admin/merchant",
+    "pages/admin/announcement",
+    "pages/admin/activity",
+    "pages/admin/report",
+    "pages/admin/data",
+    "pages/admin/order",
+    "pages/admin/evaluation",
+    "pages/admin/mine",
+    "pages/login/login",
+    "pages/register/register"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2AA198",
+    "navigationBarTitleText": "社区生活服务",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#B2BEC3",
+    "selectedColor": "#2AA198",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/neighborhood/list",
+        "text": "邻里圈"
+      },
+      {
+        "pagePath": "pages/order/list",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "custom-tab-bar": "/custom-tab-bar/index"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

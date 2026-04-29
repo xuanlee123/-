@@ -1,0 +1,24 @@
+<wxs module="utils">
+module.exports = {
+  eq: function(a, b) {
+    return a === b
+  }
+}
+</wxs>
+
+<view class="tab-bar">
+  <view 
+    class="tab-item {{active === item.pagePath ? 'active' : ''}}" 
+    wx:for="{{tabs}}" 
+    wx:key="pagePath"
+    bindtap="switchTab" 
+    data-path="{{item.pagePath}}"
+    data-index="{{index}}"
+  >
+    <view class="icon-wrapper">
+      <text class="icon">{{item.icon}}</text>
+      <view class="dot" wx:if="{{item.badge && item.badge > 0}}">{{item.badge > 99 ? '99+' : item.badge}}</view>
+    </view>
+    <text class="text">{{item.text}}</text>
+  </view>
+</view>

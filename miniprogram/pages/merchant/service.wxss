@@ -1,0 +1,191 @@
+/* pages/merchant/service.wxss - 商户服务管理 */
+page {
+  background-color: #F5F6FA;
+}
+
+.service-container {
+  min-height: 100vh;
+  background-color: #F5F6FA;
+  padding-bottom: 140rpx;
+}
+
+/* 头部 */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+
+.page-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #00B894 0%, #00A388 100%);
+  padding: 16rpx 30rpx;
+  border-radius: 40rpx;
+}
+
+.add-icon {
+  font-size: 28rpx;
+  color: #FFFFFF;
+  margin-right: 8rpx;
+}
+
+.add-text {
+  font-size: 26rpx;
+  color: #FFFFFF;
+}
+
+/* 服务列表 */
+.service-list {
+  padding: 0 30rpx;
+}
+
+/* 服务卡片 */
+.service-card {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.service-image-box {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #E8F8F5;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.service-image-text {
+  font-size: 60rpx;
+}
+
+.service-info {
+  flex: 1;
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.service-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-right: 12rpx;
+}
+
+.service-status {
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+}
+
+.service-status.online {
+  background-color: #E8F5E9;
+  color: #4CAF50;
+}
+
+.service-status.offline {
+  background-color: #F5F5F5;
+  color: #999999;
+}
+
+.service-meta {
+  display: flex;
+  align-items: center;
+}
+
+.service-price {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FF6600;
+  margin-right: 20rpx;
+}
+
+.service-sales {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* 操作按钮 */
+.service-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12rpx 24rpx;
+  border-radius: 8rpx;
+  background-color: #F5F5F5;
+}
+
+.action-icon {
+  font-size: 24rpx;
+  margin-right: 6rpx;
+}
+
+.action-text {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.action-btn.online-btn {
+  background-color: #E8F5E9;
+}
+
+.action-btn.online-btn .action-text {
+  color: #4CAF50;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 150rpx 0;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: #999999;
+  margin-bottom: 40rpx;
+}
+
+.btn-add-empty {
+  background: linear-gradient(135deg, #00B894 0%, #00A388 100%);
+  color: #FFFFFF;
+  font-size: 30rpx;
+  padding: 24rpx 60rpx;
+  border-radius: 40rpx;
+  border: none;
+}
+
+.btn-add-empty::after {
+  border: none;
+}

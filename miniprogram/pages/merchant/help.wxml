@@ -1,0 +1,16 @@
+<!--pages/merchant/help.wxml - 商户帮助中心-->
+<view class="help-container">
+  <view class="help-list">
+    <view class="help-item" wx:for="{{helpList}}" wx:key="index">
+      <view class="help-q" bindtap="toggleHelp" data-index="{{index}}">
+        <text class="q-icon">Q</text>
+        <text class="q-text">{{item.title}}</text>
+        <text class="q-arrow">{{item.expanded ? '∧' : '∨'}}</text>
+      </view>
+      <view class="help-a" wx:if="{{item.expanded}}">
+        <text class="a-icon">A</text>
+        <text class="a-text">{{item.content}}</text>
+      </view>
+    </view>
+  </view>
+</view>

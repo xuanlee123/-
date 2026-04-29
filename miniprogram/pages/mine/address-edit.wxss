@@ -1,0 +1,114 @@
+/* pages/mine/address-edit.wxss */
+page {
+  background-color: #F5F6FA;
+}
+
+.edit-container {
+  min-height: 100vh;
+  padding: 20rpx 30rpx 180rpx;
+}
+
+.form-card {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 0 30rpx;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+  min-height: 100rpx;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  font-size: 30rpx;
+  color: #333;
+  width: 160rpx;
+  flex-shrink: 0;
+}
+
+.form-input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+  text-align: right;
+}
+
+.form-input::placeholder {
+  color: #B2BEC3;
+}
+
+.placeholder {
+  color: #B2BEC3;
+}
+
+.region-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12rpx;
+}
+
+.region-text {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.edit-icon {
+  font-size: 28rpx;
+  opacity: 0.6;
+}
+
+.region-picker {
+  flex: 1;
+}
+
+.picker-value {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.arrow {
+  font-size: 32rpx;
+  color: #B2BEC3;
+  margin-left: 8rpx;
+}
+
+.switch-item {
+  justify-content: space-between;
+}
+
+.save-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 30rpx calc(20rpx + env(safe-area-inset-bottom));
+  background-color: #FFFFFF;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.save-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #00B894 0%, #00A388 100%);
+  color: #FFFFFF;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 28rpx 0;
+  border-radius: 50rpx;
+  border: none;
+}
+
+.save-btn::after {
+  border: none;
+}

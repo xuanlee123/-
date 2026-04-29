@@ -1,0 +1,116 @@
+<!--index.wxml - 首页-->
+<view class="index-container">
+  <!-- 搜索横幅 -->
+  <view class="search-banner">
+    <view class="search-box" bindtap="goToSearch">
+      <text class="search-icon">🔍</text>
+      <text class="search-placeholder">搜索服务、商户</text>
+    </view>
+    <view class="search-btn">
+      <text class="search-btn-text">搜索</text>
+    </view>
+  </view>
+
+  <!-- 热门服务轮播 -->
+  <view class="hot-service-section">
+    <view class="section-title-row">
+      <text class="section-title">热门服务</text>
+      <text class="section-more" bindtap="goToServiceList">查看更多 ></text>
+    </view>
+    <swiper class="banner-swiper" indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#FFFFFF" autoplay circular>
+      <swiper-item wx:for="{{hotServices}}" wx:key="id" bindtap="goToServiceDetail" data-id="{{item.id}}">
+        <view class="hot-service-card card-{{index + 1}}">
+          <view class="hot-service-image">
+            <image src="{{item.displayImage}}" mode="aspectFill" class="hot-image" />
+          </view>
+          <view class="hot-service-content">
+            <text class="hot-tag">{{item.categoryName || '热门'}}</text>
+            <text class="hot-price">¥{{item.price}}</text>
+            <text class="hot-desc">{{item.name}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 服务分类 -->
+  <view class="category-section">
+    <view class="section-title-row">
+      <text class="section-title">服务分类</text>
+    </view>
+    <view class="category-grid">
+      <view class="category-item" wx:for="{{categories}}" wx:key="id" bindtap="goToCategory" data-id="{{item.id}}">
+        <view class="category-icon-box" style="background-color: {{item.bgColor || '#E8F8F5'}}">
+          <text class="category-icon-emoji">{{item.icon || '🛒'}}</text>
+        </view>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 社区公告 -->
+  <view class="announcement-section">
+    <view class="section-title-row">
+      <text class="section-title">社区公告</text>
+      <text class="section-more" bindtap="goToAnnouncement">更多 ></text>
+    </view>
+    <view class="announcement-list">
+      <view class="announcement-item" wx:for="{{announcements}}" wx:key="id" wx:for-item="ann" bindtap="goToAnnouncementDetail" data-id="{{ann.id}}">
+        <text class="announcement-title">{{ann.title}}</text>
+        <text class="announcement-date">{{ann.createTime}}</text>
+      </view>
+      <view class="announcement-item" wx:if="{{announcements.length === 0}}">
+        <text class="announcement-title">暂无公告</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 社区活动 -->
+  <view class="activity-section">
+    <view class="section-title-row">
+      <text class="section-title">社区活动</text>
+      <text class="section-more" bindtap="goToActivity">更多 ></text>
+    </view>
+    <view class="activity-list">
+      <view class="activity-card" wx:for="{{activities}}" wx:key="id" bindtap="goToActivityDetail" data-id="{{item.id}}">
+        <view class="activity-cover">
+          <image wx:if="{{item.displayImage}}" src="{{item.displayImage}}" mode="aspectFill" class="cover-img" />
+          <view wx:else class="cover-placeholder">
+            <text class="cover-icon">🎉</text>
+          </view>
+          <view class="activity-status-tag status-{{item.status}}">{{item.statusText}}</view>
+        </view>
+        <view class="activity-content">
+          <view class="activity-header">
+            <text class="activity-title">{{item.title}}</text>
+          </view>
+          <view class="activity-desc">{{item.contentPreview}}</view>
+          <view class="activity-meta">
+            <view class="meta-row">
+              <text class="meta-icon">📅</text>
+              <text class="meta-text">{{item.startTimeStr}}</text>
+            </view>
+            <view class="meta-row">
+              <text class="meta-icon">📍</text>
+              <text class="meta-text">{{item.location || item.address || '待定'}}</text>
+            </view>
+            <view class="meta-row">
+              <text class="meta-icon">👥</text>
+              <text class="meta-text">{{item.currentPeople}} / {{item.maxPeople > 0 ? item.maxPeople : '不限'}} 人</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="activity-card empty" wx:if="{{activities.length === 0}}">
+        <view class="empty-content">
+          <text class="empty-icon">🎊</text>
+          <text class="empty-text">暂无活动</text>
+          <text class="empty-hint">敬请期待更多精彩活动</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 自定义底部导航栏 -->
+  <custom-tab-bar role="user" active="/pages/index/index"></custom-tab-bar>
+</view>

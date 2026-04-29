@@ -1,0 +1,389 @@
+/* pages/activity/detail.wxss - 活动详情 */
+page {
+  background-color: #F5F6FA;
+}
+
+.activity-detail-container {
+  min-height: 100vh;
+  background-color: #F5F6FA;
+  padding-bottom: 140rpx;
+}
+
+/* 活动封面 */
+.activity-cover {
+  position: relative;
+  width: 100%;
+  height: 500rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.cover-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.cover-img,
+.cover-img-single {
+  width: 100%;
+  height: 100%;
+}
+
+.cover-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-icon {
+  font-size: 150rpx;
+  opacity: 0.8;
+}
+
+.cover-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150rpx;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.activity-status-badge {
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  padding: 12rpx 28rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #fff;
+  font-weight: 500;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.activity-status-badge.status-0 { background-color: #95A5A6; }
+.activity-status-badge.status-1 { background-color: #00B894; }
+.activity-status-badge.status-2 { background-color: #3498DB; }
+.activity-status-badge.status-3 { background-color: #95A5A6; }
+
+.cover-overlay {
+  position: absolute;
+  bottom: 30rpx;
+  right: 30rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.image-count {
+  font-size: 22rpx;
+  color: #fff;
+}
+
+/* 活动信息 */
+.activity-info-section {
+  background-color: #FFFFFF;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.activity-title-row {
+  margin-bottom: 28rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.activity-title {
+  font-size: 38rpx;
+  font-weight: 600;
+  color: #333333;
+  line-height: 1.4;
+  display: block;
+}
+
+.info-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  padding: 20rpx;
+  background-color: #F8F9FA;
+  border-radius: 16rpx;
+}
+
+.info-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.info-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 6rpx;
+}
+
+.info-value {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.info-sub {
+  font-size: 22rpx;
+  color: #666;
+  margin-top: 4rpx;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8rpx;
+  background-color: #E8E8E8;
+  border-radius: 4rpx;
+  margin-top: 10rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00B894, #00CEC9);
+  border-radius: 4rpx;
+}
+
+/* 活动介绍 */
+.intro-section {
+  background-color: #FFFFFF;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-header {
+  margin-bottom: 20rpx;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+}
+
+.section-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.intro-content {
+  padding: 24rpx;
+  background-color: #F8F9FA;
+  border-radius: 16rpx;
+}
+
+.intro-text {
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+/* 图片展示 */
+.gallery-section {
+  background-color: #FFFFFF;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16rpx;
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 报名表单 */
+.signup-section {
+  background-color: #FFFFFF;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.signup-header {
+  margin-bottom: 24rpx;
+}
+
+.signup-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background-color: #F8F9FA;
+  border-radius: 16rpx;
+}
+
+.form-label {
+  width: 160rpx;
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.form-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333333;
+  background: none;
+  border: none;
+  text-align: right;
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background-color: #FFFFFF;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.bottom-left {
+  display: flex;
+}
+
+.share-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 30rpx;
+}
+
+.share-icon {
+  font-size: 44rpx;
+  margin-bottom: 4rpx;
+}
+
+.share-text {
+  font-size: 22rpx;
+  color: #666666;
+}
+
+.bottom-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-signup {
+  padding: 24rpx 80rpx;
+  background: linear-gradient(135deg, #00B894 0%, #00A388 100%);
+  color: #FFFFFF;
+  font-size: 32rpx;
+  font-weight: 600;
+  border-radius: 40rpx;
+  border: none;
+}
+
+.btn-signup::after { border: none; }
+
+.btn-ongoing,
+.btn-ended,
+.btn-offline {
+  padding: 24rpx 80rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  border-radius: 40rpx;
+  border: none;
+}
+
+.btn-ongoing {
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+  color: #fff;
+}
+
+.btn-ended {
+  background: #E8E8E8;
+  color: #999999;
+}
+
+.btn-offline {
+  background: #E8E8E8;
+  color: #999999;
+}
+
+.btn-ongoing::after,
+.btn-ended::after,
+.btn-offline::after {
+  border: none;
+}
+
+/* 加载/空状态 */
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 24rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999999;
+}

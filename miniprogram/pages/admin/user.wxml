@@ -1,0 +1,77 @@
+<!--pages/admin/user.wxml - 用户管理-->
+<view class="user-admin-container">
+  <!-- 头部 -->
+  <view class="header-bar">
+    <text class="page-title">👥 用户管理</text>
+    <view class="search-box">
+      <input class="search-input" placeholder="搜索用户" value="{{keyword}}" bindinput="onKeywordInput" bindconfirm="search" />
+      <text class="search-btn" bindtap="search">搜索</text>
+    </view>
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-tabs">
+    <view wx:for="{{tabs}}" wx:key="index"
+          class="filter-tab {{currentTab == index ? 'active' : ''}}"
+          data-idx="{{index}}"
+          bindtap="switchTab">
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 用户列表 -->
+  <view class="user-list" wx:if="{{!loading && users.length > 0}}">
+    <view class="user-card" wx:for="{{users}}" wx:key="id">
+      <view class="user-avatar">
+        <image wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="aspectFill" class="avatar-img" />
+        <text wx:else class="avatar-icon">👤</text>
+      </view>
+      <view class="user-info">
+        <view class="user-top">
+          <text class="user-name">{{item.username || '未设置昵称'}}</text>
+          <view class="user-role role-{{item.role}}">{{roleMap[item.role] || '未知'}}</view>
+          <view class="user-status status-{{item.status}}">{{statusMap[item.status] || '未知'}}</view>
+        </view>
+        <text class="user-phone">{{item.phone || '无手机号'}}</text>
+        <text class="user-time">注册于 {{item.createTime}}</text>
+      </view>
+      <view class="user-actions" bindtap="showUserActions" data-user="{{item}}">
+        <text class="action-icon">...</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && users.length == 0}}">
+    <text class="empty-text">暂无用户</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 操作菜单 -->
+  <view class="action-mask" wx:if="{{showActionSheet}}" bindtap="closeAction"></view>
+  <view class="action-sheet {{showActionSheet ? 'show' : ''}}" wx:if="{{actionUser}}">
+    <view class="sheet-header">
+      <text class="sheet-title">{{actionUser.username || '未设置昵称'}}</text>
+      <text class="sheet-sub">{{actionUser.phone}}</text>
+    </view>
+    <view class="sheet-options">
+      <view class="sheet-option enable" bindtap="handleAction" data-action="enable" wx:if="{{actionUser.status == 0}}">
+        <text class="option-icon">✓</text>
+        <text class="option-text">启用账号</text>
+      </view>
+      <view class="sheet-option disable" bindtap="handleAction" data-action="disable" wx:if="{{actionUser.status == 1}}">
+        <text class="option-icon">✕</text>
+        <text class="option-text">禁用账号</text>
+      </view>
+      <view class="sheet-option reset" bindtap="handleAction" data-action="reset">
+        <text class="option-icon">🔑</text>
+        <text class="option-text">重置密码</text>
+      </view>
+    </view>
+    <view class="sheet-cancel" bindtap="closeAction">取消</view>
+  </view>
+</view>

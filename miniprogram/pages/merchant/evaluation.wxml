@@ -1,0 +1,100 @@
+<!-- pages/merchant/evaluation.wxml -->
+<view class="container">
+  <!-- 统计卡片 -->
+  <view class="stats-card">
+    <view class="stats-row">
+      <view class="stat-item">
+        <view class="stat-value">{{stats.totalCount || 0}}</view>
+        <view class="stat-label">总评价数</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{stats.pendingEvaluations || 0}}</view>
+        <view class="stat-label">待回复</view>
+      </view>
+    </view>
+    <view class="score-section">
+      <view class="score-value">{{stats.averageScore || '0.0'}}</view>
+      <view class="score-stars">{{stars}}</view>
+    </view>
+    <view class="stats-detail">
+      <view class="detail-item">
+        <text>5星: {{stats.fiveStarCount || 0}}</text>
+      </view>
+      <view class="detail-item">
+        <text>4星: {{stats.fourStarCount || 0}}</text>
+      </view>
+      <view class="detail-item">
+        <text>3星: {{stats.threeStarCount || 0}}</text>
+      </view>
+      <view class="detail-item">
+        <text>2星: {{stats.twoStarCount || 0}}</text>
+      </view>
+      <view class="detail-item">
+        <text>1星: {{stats.oneStarCount || 0}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 标签栏 -->
+  <view class="tab-bar">
+    <view class="tab-item {{currentTab === 'all' ? 'active' : ''}}" bindtap="switchTab" data-tab="all">全部</view>
+    <view class="tab-item {{currentTab === 'pending' ? 'active' : ''}}" bindtap="switchTab" data-tab="pending">待回复</view>
+    <view class="tab-item {{currentTab === 'replied' ? 'active' : ''}}" bindtap="switchTab" data-tab="replied">已回复</view>
+  </view>
+
+  <!-- 评价列表 -->
+  <view class="eval-list">
+    <view class="eval-item" wx:for="{{evaluations}}" wx:key="id">
+      <view class="eval-header">
+        <view class="user-info">
+          <image class="avatar" src="{{item.userAvatar || '/assets/images/avatar-default.png'}}"></image>
+          <view>
+            <view class="user-name">{{item.userName || '匿名用户'}}</view>
+            <view class="eval-time">{{item.createTime}}</view>
+          </view>
+        </view>
+        <view style="display: flex; align-items: center; gap: 12rpx;">
+          <text class="stars">{{getStars(item.score)}}</text>
+          <text class="pending-tag" wx:if="{{item.status === 0}}">待回复</text>
+        </view>
+      </view>
+
+      <view class="eval-content">{{item.content}}</view>
+
+      <view class="eval-images" wx:if="{{item.images}}">
+        <image class="eval-image" wx:for="{{item.imagesArray}}" wx:for-item="img" wx:key="*this" src="{{img}}" mode="aspectFill" bindtap="previewImage" data-images="{{item.imagesArray}}" data-current="{{img}}"></image>
+      </view>
+
+      <!-- 已回复内容 -->
+      <view class="reply-section" wx:if="{{item.merchantReply}}">
+        <view class="reply-label">商家回复</view>
+        <view class="reply-content">{{item.merchantReply}}</view>
+        <view class="reply-time" wx:if="{{item.merchantReplyTime}}">{{item.merchantReplyTime}}</view>
+      </view>
+
+      <!-- 回复按钮 -->
+      <view wx:if="{{!item.merchantReply}}">
+        <view wx:if="{{replyingId !== item.id}}">
+          <view class="reply-btn" bindtap="showReplyForm" data-id="{{item.id}}">回复评价</view>
+        </view>
+        <view wx:else class="reply-form">
+          <textarea class="reply-input" placeholder="请输入回复内容..." bindinput="onReplyInput" value="{{replyContent}}" maxlength="200" auto-focus></textarea>
+          <view class="reply-actions">
+            <view class="cancel-btn" bindtap="cancelReply">取消</view>
+            <view class="submit-btn" bindtap="submitReply" data-id="{{item.id}}">提交回复</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-tip" wx:if="{{!loading && evaluations.length === 0}}">
+    <text>暂无评价</text>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

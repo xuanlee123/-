@@ -1,0 +1,333 @@
+/* pages/merchant/apply.wxss - 商户入驻申请页面 */
+page {
+  background-color: var(--bg-page);
+}
+
+.apply-container {
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  padding: 32rpx;
+}
+
+/* 步骤指示器 */
+.steps-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 0;
+  margin-bottom: 40rpx;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-circle {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background-color: var(--bg-gray);
+  color: var(--text-placeholder);
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12rpx;
+}
+
+.step-item.active .step-circle {
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+}
+
+.step-text {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+}
+
+.step-item.active .step-text {
+  color: var(--primary-color);
+}
+
+.step-line {
+  width: 120rpx;
+  height: 2rpx;
+  background-color: var(--border-color);
+  margin: 0 24rpx;
+  margin-bottom: 40rpx;
+}
+
+.step-line.active {
+  background-color: var(--primary-color);
+}
+
+/* 表单区域 */
+.form-section {
+  background-color: var(--bg-card);
+  border-radius: 20rpx;
+  padding: 32rpx;
+}
+
+.form-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 32rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid var(--border-light);
+}
+
+.form-item {
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  margin-bottom: 16rpx;
+}
+
+.required {
+  color: var(--danger-color);
+}
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  padding: 0 24rpx;
+  background-color: var(--bg-gray);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  box-sizing: border-box;
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 200rpx;
+  padding: 24rpx;
+  background-color: var(--bg-gray);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  box-sizing: border-box;
+}
+
+.form-picker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 24rpx;
+  background-color: var(--bg-gray);
+  border-radius: 12rpx;
+  box-sizing: border-box;
+}
+
+.picker-placeholder {
+  font-size: 28rpx;
+  color: var(--text-placeholder);
+}
+
+.picker-value {
+  font-size: 28rpx;
+  color: var(--text-primary);
+}
+
+.picker-arrow {
+  font-size: 28rpx;
+  color: var(--text-placeholder);
+}
+
+/* 图片上传 */
+.image-upload-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300rpx;
+  background-color: var(--bg-gray);
+  border-radius: 12rpx;
+  border: 2rpx dashed var(--border-color);
+}
+
+.upload-icon {
+  font-size: 80rpx;
+  color: var(--text-placeholder);
+  margin-bottom: 16rpx;
+}
+
+.upload-text {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.image-preview {
+  position: relative;
+}
+
+.preview-image {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 12rpx;
+}
+
+.image-actions {
+  display: flex;
+  justify-content: center;
+  gap: 40rpx;
+  margin-top: 16rpx;
+}
+
+.action-btn {
+  font-size: 26rpx;
+  color: var(--primary-color);
+  padding: 8rpx 24rpx;
+}
+
+.action-btn.delete {
+  color: var(--danger-color);
+}
+
+/* 按钮 */
+.form-btn-wrapper {
+  display: flex;
+  gap: 24rpx;
+  margin-top: 40rpx;
+}
+
+.form-btn-default,
+.form-btn-primary {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.form-btn-default {
+  background-color: var(--bg-gray);
+  color: var(--text-secondary);
+  border: none;
+}
+
+.form-btn-primary {
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+  border: none;
+}
+
+.form-btn-default::after,
+.form-btn-primary::after {
+  border: none;
+}
+
+/* 成功页面 */
+.success-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80rpx;
+}
+
+.success-icon {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  font-size: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+
+.success-title {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16rpx;
+}
+
+.success-desc {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  margin-bottom: 60rpx;
+}
+
+.success-tips {
+  width: 100%;
+  background-color: var(--bg-card);
+  border-radius: 20rpx;
+  padding: 32rpx;
+  margin-bottom: 60rpx;
+}
+
+.tip-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.tip-item:last-child {
+  margin-bottom: 0;
+}
+
+.tip-icon {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.success-btn-wrapper {
+  display: flex;
+  gap: 24rpx;
+  width: 100%;
+}
+
+.success-btn-default,
+.success-btn-primary {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.success-btn-default {
+  background-color: var(--bg-gray);
+  color: var(--text-secondary);
+  border: none;
+}
+
+.success-btn-primary {
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+  border: none;
+}
+
+.success-btn-default::after,
+.success-btn-primary::after {
+  border: none;
+}

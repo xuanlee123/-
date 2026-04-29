@@ -1,0 +1,85 @@
+<!--pages/mine/coupon.wxml - 我的优惠券-->
+<view class="coupon-container">
+  <!-- 标签栏 -->
+  <view class="tabs-bar">
+    <view class="tab-item {{currentTab === 'unused' ? 'active' : ''}}" bindtap="switchTab" data-tab="unused">
+      <text class="tab-text">未使用</text>
+    </view>
+    <view class="tab-item {{currentTab === 'used' ? 'active' : ''}}" bindtap="switchTab" data-tab="used">
+      <text class="tab-text">已使用</text>
+    </view>
+    <view class="tab-item {{currentTab === 'expired' ? 'active' : ''}}" bindtap="switchTab" data-tab="expired">
+      <text class="tab-text">已过期</text>
+    </view>
+  </view>
+
+  <!-- 优惠券列表 -->
+  <view class="coupon-list">
+    <!-- 优惠券卡片1 -->
+    <view class="coupon-card">
+      <view class="coupon-left">
+        <text class="coupon-price">¥10</text>
+        <text class="coupon-desc">满50可用</text>
+      </view>
+      <view class="coupon-right">
+        <view class="coupon-header">
+          <text class="coupon-title">新人专享券</text>
+          <view class="coupon-tag">首次下单</view>
+        </view>
+        <text class="coupon-time">有效期至 2024-02-28</text>
+        <view class="coupon-footer">
+          <text class="coupon-condition">全场通用</text>
+          <view class="coupon-use-btn">立即使用</view>
+        </view>
+      </view>
+      <view class="coupon-ribbon"></view>
+    </view>
+
+    <!-- 优惠券卡片2 -->
+    <view class="coupon-card">
+      <view class="coupon-left" style="background-color: #FF9800">
+        <text class="coupon-price">¥20</text>
+        <text class="coupon-desc">满100可用</text>
+      </view>
+      <view class="coupon-right">
+        <view class="coupon-header">
+          <text class="coupon-title">家政服务券</text>
+          <view class="coupon-tag">限时</view>
+        </view>
+        <text class="coupon-time">有效期至 2024-02-15</text>
+        <view class="coupon-footer">
+          <text class="coupon-condition">仅限家政服务</text>
+          <view class="coupon-use-btn">立即使用</view>
+        </view>
+      </view>
+      <view class="coupon-ribbon"></view>
+    </view>
+
+    <!-- 优惠券卡片3 -->
+    <view class="coupon-card">
+      <view class="coupon-left" style="background-color: #4CAF50">
+        <text class="coupon-price">¥5</text>
+        <text class="coupon-desc">无门槛</text>
+      </view>
+      <view class="coupon-right">
+        <view class="coupon-header">
+          <text class="coupon-title">生鲜配送券</text>
+        </view>
+        <text class="coupon-time">有效期至 2024-02-20</text>
+        <view class="coupon-footer">
+          <text class="coupon-condition">仅限生鲜配送</text>
+          <view class="coupon-use-btn">立即使用</view>
+        </view>
+      </view>
+      <view class="coupon-ribbon"></view>
+    </view>
+  </view>
+
+  <!-- 领取优惠券入口 -->
+  <view class="get-coupon-bar">
+    <button class="get-coupon-btn" bindtap="getMoreCoupon">
+      <text class="coupon-icon">🎟️</text>
+      <text class="coupon-text">领更多优惠券</text>
+    </button>
+  </view>
+</view>

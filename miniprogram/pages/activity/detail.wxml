@@ -1,0 +1,143 @@
+<view class="activity-detail-container">
+  <block wx:if="{{!loading && activity}}">
+    <!-- 活动封面轮播 -->
+    <view class="activity-cover">
+      <swiper wx:if="{{activity.imagesArray.length > 1}}" class="cover-swiper" indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" circular>
+        <swiper-item wx:for="{{activity.imagesArray}}" wx:key="index">
+          <image src="{{item}}" mode="aspectFill" class="cover-img" />
+        </swiper-item>
+      </swiper>
+      <image wx:elif="{{activity.displayImage}}" src="{{activity.displayImage}}" mode="aspectFill" class="cover-img-single" />
+      <view wx:else class="cover-placeholder">
+        <text class="cover-icon">🎉</text>
+      </view>
+      <view class="cover-gradient"></view>
+      <view class="activity-status-badge status-{{activity.status}}">{{activity.statusText}}</view>
+      <view class="cover-overlay" wx:if="{{activity.imagesArray.length > 1}}">
+        <text class="image-count">{{activity.imagesArray.length}} 张图片</text>
+      </view>
+    </view>
+
+    <!-- 活动信息 -->
+    <view class="activity-info-section">
+      <view class="activity-title-row">
+        <text class="activity-title">{{activity.title}}</text>
+      </view>
+
+      <view class="info-cards">
+        <view class="info-card">
+          <view class="info-icon">📅</view>
+          <view class="info-content">
+            <text class="info-label">活动时间</text>
+            <text class="info-value">{{activity.startTime}}</text>
+            <text class="info-sub" wx:if="{{activity.endTime}}">至 {{activity.endTime}}</text>
+          </view>
+        </view>
+
+        <view class="info-card">
+          <view class="info-icon">📍</view>
+          <view class="info-content">
+            <text class="info-label">活动地点</text>
+            <text class="info-value">{{activity.location || '待定'}}</text>
+          </view>
+        </view>
+
+        <view class="info-card">
+          <view class="info-icon">👥</view>
+          <view class="info-content">
+            <text class="info-label">报名情况</text>
+            <text class="info-value">{{activity.currentPeople}} / {{activity.maxPeople > 0 ? activity.maxPeople : '不限'}} 人</text>
+            <view class="progress-bar" wx:if="{{activity.maxPeople > 0}}">
+              <view class="progress-fill" style="width: {{activity.currentPeople / activity.maxPeople * 100}}%"></view>
+            </view>
+          </view>
+        </view>
+
+        <view class="info-card" wx:if="{{activity.signupStartTime}}">
+          <view class="info-icon">🕐</view>
+          <view class="info-content">
+            <text class="info-label">报名时间</text>
+            <text class="info-value">{{activity.signupStartTime}}</text>
+            <text class="info-sub" wx:if="{{activity.signupEndTime}}">至 {{activity.signupEndTime}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 活动介绍 -->
+    <view class="intro-section">
+      <view class="section-header">
+        <view class="section-title-row">
+          <text class="section-icon">📋</text>
+          <text class="section-title">活动介绍</text>
+        </view>
+      </view>
+      <view class="intro-content">
+        <text class="intro-text">{{activity.content}}</text>
+      </view>
+    </view>
+
+    <!-- 图片展示 -->
+    <view class="gallery-section" wx:if="{{activity.imagesArray.length > 0}}">
+      <view class="section-header">
+        <view class="section-title-row">
+          <text class="section-icon">📷</text>
+          <text class="section-title">活动相册</text>
+        </view>
+      </view>
+      <view class="gallery-grid">
+        <view class="gallery-item" wx:for="{{activity.imagesArray}}" wx:key="index" bindtap="previewImage" data-url="{{item}}">
+          <image src="{{item}}" mode="aspectFill" class="gallery-img" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 报名表单 -->
+    <view class="signup-section" wx:if="{{activity.status == 1}}">
+      <view class="signup-header">
+        <text class="signup-title">立即报名</text>
+      </view>
+      <view class="signup-form">
+        <view class="form-item">
+          <text class="form-label">姓名</text>
+          <input class="form-input" data-field="name" value="{{signupForm.name}}" bindinput="onFormFieldChange" placeholder="请输入您的姓名" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">联系电话</text>
+          <input class="form-input" data-field="phone" value="{{signupForm.phone}}" bindinput="onFormFieldChange" type="number" placeholder="请输入您的电话" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">备注</text>
+          <input class="form-input" data-field="remark" value="{{signupForm.remark}}" bindinput="onFormFieldChange" placeholder="选填，可备注特殊情况" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="bottom-bar">
+      <view class="bottom-left">
+        <view class="share-btn" bindtap="shareActivity">
+          <text class="share-icon">📤</text>
+          <text class="share-text">分享</text>
+        </view>
+      </view>
+      <view class="bottom-right">
+        <button wx:if="{{activity.status == 1}}" class="btn-signup" bindtap="submitSignup">立即报名</button>
+        <button wx:elif="{{activity.status == 2}}" class="btn-ongoing" disabled>进行中</button>
+        <button wx:elif="{{activity.status == 3}}" class="btn-ended" disabled>已结束</button>
+        <button wx:else class="btn-offline" disabled>已下架</button>
+      </view>
+    </view>
+  </block>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && !activity}}">
+    <text class="empty-icon">🎊</text>
+    <text class="empty-text">活动不存在</text>
+  </view>
+</view>

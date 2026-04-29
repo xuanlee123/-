@@ -1,0 +1,185 @@
+/* pages/order/pay.wxss - 订单支付 */
+page {
+  background-color: var(--bg-page);
+}
+
+.pay-container {
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  padding-bottom: 160rpx;
+}
+
+/* 金额区域 */
+.amount-section {
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+  text-align: center;
+  padding: 60rpx 30rpx;
+}
+
+.amount-label {
+  font-size: 28rpx;
+  opacity: 0.9;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.amount-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.amount-symbol {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-right: 8rpx;
+}
+
+.amount-value {
+  font-size: 80rpx;
+  font-weight: bold;
+}
+
+.order-no {
+  font-size: 24rpx;
+  opacity: 0.7;
+}
+
+/* 支付方式 */
+.payment-section {
+  background-color: var(--bg-card);
+  margin: 20rpx 30rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 24rpx 30rpx;
+  border-bottom: 1rpx solid var(--border-light);
+}
+
+.payment-list {
+  padding: 0 30rpx;
+}
+
+.payment-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid var(--border-light);
+}
+
+.payment-item:last-child {
+  border-bottom: none;
+}
+
+.payment-icon-wrap {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.payment-icon-wrap.wechat {
+  background-color: #E8F8F5;
+}
+
+.payment-icon-wrap.balance {
+  background-color: #FFF3E0;
+}
+
+.payment-icon {
+  font-size: 40rpx;
+}
+
+.payment-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-name {
+  font-size: 30rpx;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 6rpx;
+}
+
+.payment-desc {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.payment-check {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-item.active .payment-check {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.check-icon {
+  font-size: 24rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+/* 安全提示 */
+.safe-tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx;
+  gap: 10rpx;
+}
+
+.safe-icon {
+  font-size: 28rpx;
+}
+
+.safe-text {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background-color: var(--bg-card);
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.pay-btn {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+  padding: 28rpx 0;
+  border-radius: 50rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  border: none;
+}
+
+.pay-btn::after {
+  border: none;
+}

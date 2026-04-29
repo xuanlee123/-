@@ -1,0 +1,150 @@
+<!--pages/admin/report.wxml - 数据报表-->
+<view class="report-container">
+  <!-- 时间筛选 -->
+  <view class="time-filter">
+    <view class="filter-item active">
+      <text>今日</text>
+    </view>
+    <view class="filter-item">
+      <text>本周</text>
+    </view>
+    <view class="filter-item">
+      <text>本月</text>
+    </view>
+    <view class="filter-item">
+      <text>本年</text>
+    </view>
+  </view>
+
+  <!-- 核心指标 -->
+  <view class="overview-section">
+    <view class="overview-card">
+      <text class="overview-title">💰 总收入</text>
+      <text class="overview-value">¥328,560</text>
+      <view class="overview-trend">
+        <text class="trend-icon">📈</text>
+        <text class="trend-text">较上期 +18.5%</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据卡片 -->
+  <view class="metrics-section">
+    <view class="metrics-grid">
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background-color: #E8F8F5">
+          <text class="metric-icon">📋</text>
+        </view>
+        <text class="metric-value">1,568</text>
+        <text class="metric-label">总订单数</text>
+        <text class="metric-trend up">+12%</text>
+      </view>
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background-color: #FFF3E0">
+          <text class="metric-icon">👥</text>
+        </view>
+        <text class="metric-value">2,856</text>
+        <text class="metric-label">用户总数</text>
+        <text class="metric-trend up">+8%</text>
+      </view>
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background-color: #E3F2FD">
+          <text class="metric-icon">🏪</text>
+        </view>
+        <text class="metric-value">58</text>
+        <text class="metric-label">商户总数</text>
+        <text class="metric-trend up">+5%</text>
+      </view>
+      <view class="metric-card">
+        <view class="metric-icon-box" style="background-color: #F3E5F5">
+          <text class="metric-icon">⭐</text>
+        </view>
+        <text class="metric-value">4.8</text>
+        <text class="metric-label">平均评分</text>
+        <text class="metric-trend up">+0.2</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务类型分布 -->
+  <view class="chart-section">
+    <view class="section-header">
+      <text class="section-title">📊 服务类型分布</text>
+    </view>
+    <view class="chart-card">
+      <view class="chart-item">
+        <view class="chart-label">
+          <view class="label-dot" style="background-color: #00B894"></view>
+          <text class="label-text">家政服务</text>
+        </view>
+        <view class="chart-bar-wrapper">
+          <view class="chart-bar" style="width: 45%; background-color: #00B894"></view>
+        </view>
+        <text class="chart-value">45%</text>
+      </view>
+      <view class="chart-item">
+        <view class="chart-label">
+          <view class="label-dot" style="background-color: #FF9800"></view>
+          <text class="label-text">维修保养</text>
+        </view>
+        <view class="chart-bar-wrapper">
+          <view class="chart-bar" style="width: 25%; background-color: #FF9800"></view>
+        </view>
+        <text class="chart-value">25%</text>
+      </view>
+      <view class="chart-item">
+        <view class="chart-label">
+          <view class="label-dot" style="background-color: #2196F3"></view>
+          <text class="label-text">生鲜配送</text>
+        </view>
+        <view class="chart-bar-wrapper">
+          <view class="chart-bar" style="width: 18%; background-color: #2196F3"></view>
+        </view>
+        <text class="chart-value">18%</text>
+      </view>
+      <view class="chart-item">
+        <view class="chart-label">
+          <view class="label-dot" style="background-color: #9C27B0"></view>
+          <text class="label-text">其他服务</text>
+        </view>
+        <view class="chart-bar-wrapper">
+          <view class="chart-bar" style="width: 12%; background-color: #9C27B0"></view>
+        </view>
+        <text class="chart-value">12%</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热门服务排行 -->
+  <view class="ranking-section">
+    <view class="section-header">
+      <text class="section-title">🏆 热门服务排行</text>
+    </view>
+    <view class="ranking-card">
+      <view class="ranking-item">
+        <view class="ranking-rank gold">1</view>
+        <view class="ranking-info">
+          <text class="ranking-name">日常保洁服务</text>
+          <text class="ranking-sales">1288单</text>
+        </view>
+        <text class="ranking-revenue">¥154,560</text>
+      </view>
+      <view class="ranking-item">
+        <view class="ranking-rank silver">2</view>
+        <view class="ranking-info">
+          <text class="ranking-name">空调清洗保养</text>
+          <text class="ranking-sales">856单</text>
+        </view>
+        <text class="ranking-revenue">¥154,080</text>
+      </view>
+      <view class="ranking-item">
+        <view class="ranking-rank bronze">3</view>
+        <view class="ranking-info">
+          <text class="ranking-name">深度清洁服务</text>
+          <text class="ranking-sales">568单</text>
+        </view>
+        <text class="ranking-revenue">¥113,600</text>
+      </view>
+    </view>
+  </view>
+</view>

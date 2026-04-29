@@ -1,0 +1,250 @@
+/* pages/order/detail.wxss - 订单详情 */
+page {
+  background-color: var(--bg-page);
+}
+
+.order-detail-container {
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  padding-bottom: 160rpx;
+}
+
+/* 订单状态 */
+.order-status-section {
+  display: flex;
+  align-items: center;
+  background: var(--primary-color);
+  padding: 40rpx 30rpx;
+  color: #FFFFFF;
+}
+
+.status-icon-box {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.status-icon {
+  font-size: 50rpx;
+}
+
+.status-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.status-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.status-hint {
+  font-size: 26rpx;
+  opacity: 0.9;
+}
+
+/* 通用信息区块 */
+.info-section {
+  margin: 20rpx 30rpx;
+  background-color: var(--bg-card);
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 30rpx;
+  border-bottom: 1rpx solid var(--border-light);
+}
+
+.section-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.info-content {
+  padding: 24rpx 30rpx;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: var(--text-primary);
+}
+
+.info-value.highlight {
+  color: var(--danger-color);
+}
+
+.total-row {
+  padding-top: 16rpx;
+  border-top: 1rpx solid var(--border-light);
+  margin-top: 16rpx;
+}
+
+.total-price {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* 服务卡片 */
+.service-card {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 30rpx;
+}
+
+.service-image-box {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: var(--primary-light);
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.service-image-text {
+  font-size: 48rpx;
+}
+
+.service-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-name {
+  font-size: 30rpx;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.service-merchant {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-bottom: 8rpx;
+}
+
+.service-time {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+}
+
+.service-price {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background-color: var(--bg-card);
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+.bottom-left {
+  display: flex;
+  align-items: baseline;
+}
+
+.real-pay-label {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  margin-right: 8rpx;
+}
+
+.real-pay-price {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.bottom-right {
+  display: flex;
+  gap: 20rpx;
+}
+
+.btn-cancel,
+.btn-pay {
+  padding: 20rpx 40rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  border: none;
+}
+
+.btn-cancel {
+  background-color: var(--bg-gray);
+  color: var(--text-secondary);
+}
+
+.btn-pay {
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+}
+
+.btn-cancel::after,
+.btn-pay::after {
+  border: none;
+}
+
+.bottom-right.single {
+  justify-content: flex-end;
+}
+
+.btn-evaluate {
+  padding: 20rpx 60rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+  border: none;
+}
+
+.btn-evaluate::after {
+  border: none;
+}

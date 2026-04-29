@@ -1,0 +1,235 @@
+<view class="activity-container">
+  <!-- 头部 -->
+  <view class="header-bar">
+    <text class="page-title">🎉 活动管理</text>
+    <view class="btn-add" bindtap="openAddForm">
+      <text class="add-icon">➕</text>
+      <text class="add-text">创建活动</text>
+    </view>
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-tabs">
+    <view wx:for="{{tabs}}" wx:key="index"
+          class="filter-tab {{currentTab == index ? 'active' : ''}}"
+          data-idx="{{index}}"
+          bindtap="switchTab">
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 活动列表 -->
+  <view class="activity-list" wx:if="{{!loading && activities.length > 0}}">
+    <view class="activity-card {{item.status == 3 ? 'ended' : ''}}" wx:for="{{activities}}" wx:key="id">
+      <view class="card-header">
+        <view class="activity-cover" wx:if="{{item.imageUrl}}">
+          <image src="{{item.imageUrl}}" mode="aspectFill" class="cover-img"></image>
+        </view>
+        <view class="activity-cover" wx:else>
+          <text class="cover-icon">🎉</text>
+        </view>
+        <view class="activity-info">
+          <view class="activity-header">
+            <text class="activity-title">{{item.title}}</text>
+            <view class="activity-status status-{{item.status}}">{{statusText[item.status]}}</view>
+          </view>
+          <view class="activity-meta">
+            <text class="meta-item">📅 {{item.startTime}} - {{item.endTime}}</text>
+            <text class="meta-item">📍 {{item.location || item.address || '待定'}}</text>
+          </view>
+          <view class="activity-stats">
+            <text class="stat-item">👥 {{item.currentPeople || 0}} / {{item.maxPeople || '不限'}} 人</text>
+          </view>
+        </view>
+      </view>
+      <view class="card-actions">
+        <view class="action-btn" bindtap="openEditForm" data-item="{{item}}">✏️ 编辑</view>
+        <view class="action-btn" bindtap="viewSignups" data-item="{{item}}">👥 报名管理</view>
+        <view class="action-btn end" bindtap="deleteActivity" data-id="{{item.id}}">🗑️ 删除</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && activities.length == 0}}">
+    <text class="empty-text">暂无活动</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 创建/编辑表单 -->
+  <view class="form-overlay" wx:if="{{showForm}}">
+    <view class="form-overlay-mask" bindtap="closeForm"></view>
+    <view class="form-page">
+      <view class="form-page-header">
+        <text class="form-page-title">{{isEditing ? '编辑活动' : '创建活动'}}</text>
+        <view class="form-page-close" bindtap="closeForm">✕</view>
+      </view>
+      <scroll-view class="form-page-body" scroll-y="true">
+        <!-- 基本信息 -->
+        <view class="form-section">
+          <view class="form-section-title">基本信息</view>
+          <view class="form-card">
+            <view class="form-item">
+              <text class="form-label">活动标题</text>
+              <input class="form-input" data-field="title" value="{{formData.title}}" bindinput="onFieldChange" placeholder="请输入活动标题" />
+            </view>
+            <view class="form-item">
+              <text class="form-label">活动地点</text>
+              <input class="form-input" data-field="address" value="{{formData.address}}" bindinput="onFieldChange" placeholder="请输入活动地点" />
+            </view>
+            <view class="form-item">
+              <text class="form-label">最大人数</text>
+              <input class="form-input" data-field="maxPeople" value="{{formData.maxPeople}}" bindinput="onFieldChange" type="number" placeholder="留空表示不限" />
+            </view>
+          </view>
+        </view>
+
+        <!-- 报名时间 -->
+        <view class="form-section">
+          <view class="form-section-title">报名时间</view>
+          <view class="form-card">
+            <picker mode="date" bindchange="onSignupStartDateChange" value="{{formData.signupStartDate}}">
+              <view class="form-item picker-item">
+                <text class="form-label">报名开始日期</text>
+                <view class="form-picker-value">
+                  <text>{{formData.signupStartDate || '请选择'}}</text>
+                  <text class="arrow">›</text>
+                </view>
+              </view>
+            </picker>
+            <picker mode="time" bindchange="onSignupStartTimeChange" value="{{formData.signupStartTime}}">
+              <view class="form-item picker-item">
+                <text class="form-label">开始时间</text>
+                <view class="form-picker-value">
+                  <text>{{formData.signupStartTime || '请选择'}}</text>
+                  <text class="arrow">›</text>
+                </view>
+              </view>
+            </picker>
+            <picker mode="date" bindchange="onSignupEndDateChange" value="{{formData.signupEndDate}}">
+              <view class="form-item picker-item">
+                <text class="form-label">报名截止日期</text>
+                <view class="form-picker-value">
+                  <text>{{formData.signupEndDate || '请选择'}}</text>
+                  <text class="arrow">›</text>
+                </view>
+              </view>
+            </picker>
+            <picker mode="time" bindchange="onSignupEndTimeChange" value="{{formData.signupEndTime}}">
+              <view class="form-item picker-item">
+                <text class="form-label">截止时间</text>
+                <view class="form-picker-value">
+                  <text>{{formData.signupEndTime || '请选择'}}</text>
+                  <text class="arrow">›</text>
+                </view>
+              </view>
+            </picker>
+          </view>
+        </view>
+
+        <!-- 活动时间 -->
+        <view class="form-section">
+          <view class="form-section-title">活动时间</view>
+          <view class="form-card">
+            <picker mode="date" bindchange="onStartDateChange" value="{{formData.startDate}}">
+              <view class="form-item picker-item">
+                <text class="form-label">开始日期</text>
+                <view class="form-picker-value">
+                  <text>{{formData.startDate || '请选择'}}</text>
+                  <text class="arrow">›</text>
+                </view>
+              </view>
+            </picker>
+            <picker mode="time" bindchange="onStartTimeChange" value="{{formData.startTime}}">
+              <view class="form-item picker-item">
+                <text class="form-label">开始时间</text>
+                <view class="form-picker-value">
+                  <text>{{formData.startTime || '请选择'}}</text>
+                  <text class="arrow">›</text>
+                </view>
+              </view>
+            </picker>
+            <picker mode="date" bindchange="onEndDateChange" value="{{formData.endDate}}">
+              <view class="form-item picker-item">
+                <text class="form-label">结束日期</text>
+                <view class="form-picker-value">
+                  <text>{{formData.endDate || '请选择'}}</text>
+                  <text class="arrow">›</text>
+                </view>
+              </view>
+            </picker>
+            <picker mode="time" bindchange="onEndTimeChange" value="{{formData.endTime}}">
+              <view class="form-item picker-item">
+                <text class="form-label">结束时间</text>
+                <view class="form-picker-value">
+                  <text>{{formData.endTime || '请选择'}}</text>
+                  <text class="arrow">›</text>
+                </view>
+              </view>
+            </picker>
+          </view>
+        </view>
+
+        <!-- 封面图片 -->
+        <view class="form-section">
+          <view class="form-section-title">封面图片</view>
+          <view class="form-card">
+            <view class="image-upload-area" bindtap="chooseImage">
+              <image wx:if="{{formData.imageUrl}}" src="{{formData.imageUrl}}" mode="aspectFill" class="upload-preview" />
+              <view wx:else class="upload-placeholder">
+                <text class="upload-icon">📷</text>
+                <text class="upload-text">点击上传封面图</text>
+              </view>
+              <text class="upload-clear" wx:if="{{formData.imageUrl}}" catchtap="clearImage">✕ 清除</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 活动内容 -->
+        <view class="form-section">
+          <view class="form-section-title">活动内容</view>
+          <view class="form-card">
+            <textarea class="form-textarea" data-field="content" value="{{formData.content}}" bindinput="onFieldChange" placeholder="请输入活动详情介绍" />
+          </view>
+        </view>
+      </scroll-view>
+      <view class="form-page-footer">
+        <button class="btn-cancel" bindtap="closeForm">取消</button>
+        <button class="btn-submit" bindtap="submitForm">{{isEditing ? '保存' : '创建'}}</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 报名列表弹窗 -->
+  <view class="form-overlay" wx:if="{{showSignupList}}">
+    <view class="form-overlay-mask" bindtap="closeSignupList"></view>
+    <view class="form-page">
+      <view class="form-page-header">
+        <text class="form-page-title">报名列表 - {{currentActivity ? currentActivity.title : ''}}</text>
+        <view class="form-page-close" bindtap="closeSignupList">✕</view>
+      </view>
+      <scroll-view class="form-page-body" scroll-y="true">
+        <view class="signup-list">
+          <view class="signup-item" wx:for="{{signupList}}" wx:key="id">
+            <view class="signup-info">
+              <text class="signup-name">{{item.name}}</text>
+              <text class="signup-phone">{{item.phone}}</text>
+              <text class="signup-remark" wx:if="{{item.remark}}">备注: {{item.remark}}</text>
+            </view>
+            <view class="signup-actions">
+              <text class="signup-time">{{item.signUpTime}}</text>
+              <view class="action-btn end" bindtap="cancelSignup" data-signupid="{{item.id}}">取消报名</view>
+            </view>
+          </view>
+          <view class="empty-signup" wx:if="{{signupList.length == 0}}">
+            <text>暂无报名记录</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,52 @@
+<!--pages/service/list.wxml - 服务列表-->
+<view class="service-container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索服务" placeholder-class="search-placeholder" bindconfirm="onSearch" bindinput="onSearchInput" value="{{keyword}}" />
+  </view>
+
+  <!-- 分类标签 -->
+  <scroll-view class="category-tabs" scroll-x="true" enhanced="true" show-scrollbar="false">
+    <view class="category-tab {{categoryId === 0 ? 'active' : ''}}" bindtap="switchCategory" data-id="0">
+      <text>全部</text>
+    </view>
+    <view class="category-tab {{categoryId === item.id ? 'active' : ''}}" wx:for="{{categories}}" wx:key="id" bindtap="switchCategory" data-id="{{item.id}}">
+      <text>{{item.name}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- 服务列表 - 双列网格 -->
+  <view class="service-grid">
+    <view class="service-card" wx:for="{{services}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <view class="card-cover">
+        <image class="service-image" src="{{item.displayImage}}" mode="aspectFill" />
+        <view class="service-tag">{{item.categoryName || '服务'}}</view>
+      </view>
+      <view class="card-body">
+        <text class="service-name">{{item.name}}</text>
+        <text class="service-merchant">🏪 {{item.merchantName || '官方服务'}}</text>
+        <view class="card-footer">
+          <view class="service-price">
+            <text class="price-symbol">¥</text>
+            <text class="price-value">{{item.price}}</text>
+          </view>
+          <text class="service-sales">{{item.sales || 0}}人</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="loading-more" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+  <view class="no-more" wx:if="{{!loading && !hasMore && services.length > 0}}">
+    <text class="no-more-text">— 没有更多了 —</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && services.length === 0}}">
+    <text class="empty-icon">🔍</text>
+    <text class="empty-text">暂无相关服务</text>
+  </view>
+</view>

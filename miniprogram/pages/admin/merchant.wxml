@@ -1,0 +1,90 @@
+<!--pages/admin/merchant.wxml - 管理员商户管理页面-->
+<view class="merchant-container">
+  <!-- 头部 -->
+  <view class="header-bar">
+    <text class="page-title">🏪 商户管理</text>
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-tabs">
+    <view wx:for="{{tabs}}" wx:key="index"
+          class="filter-tab {{currentTab == index ? 'active' : ''}}"
+          data-idx="{{index}}"
+          bindtap="switchTab">
+      <text>{{item}}</text>
+      <view class="tab-badge" wx:if="{{index === 0 && merchants.length > 0}}">{{merchants.length}}</view>
+    </view>
+  </view>
+
+  <!-- 商户列表 -->
+  <scroll-view scroll-y class="merchant-list" wx:if="{{!loading && merchants.length > 0}}">
+    <view class="merchant-card" wx:for="{{merchants}}" wx:key="id">
+      <view class="merchant-header">
+        <view class="merchant-avatar">
+          <text class="avatar-text">{{item.avatarText}}</text>
+        </view>
+        <view class="merchant-info">
+          <text class="merchant-name">{{item.name}}</text>
+          <text class="merchant-contact">{{item.contactPerson}} | {{item.contactPhone}}</text>
+          <text class="merchant-time">申请时间：{{item.createTime}}</text>
+        </view>
+        <view class="merchant-status status-{{statusClass[item.status]}}">
+          {{statusMap[item.status]}}
+        </view>
+      </view>
+      
+      <view class="merchant-detail">
+        <text class="detail-label">地址：</text>
+        <text class="detail-value">{{item.address}}</text>
+      </view>
+
+      <view class="merchant-detail" wx:if="{{item.description}}">
+        <text class="detail-label">简介：</text>
+        <text class="detail-value">{{item.description}}</text>
+      </view>
+
+      <view class="merchant-actions">
+        <view class="action-btn view" bindtap="showDetail" data-merchant="{{item}}">查看详情</view>
+        <view class="action-btn license" bindtap="viewLicense" data-url="{{item.license}}" wx:if="{{item.license}}">营业执照</view>
+        <view class="action-btn pass" bindtap="passMerchant" data-id="{{item.id}}" wx:if="{{item.status === 0}}">通过</view>
+        <view class="action-btn reject" bindtap="rejectMerchant" data-id="{{item.id}}" wx:if="{{item.status === 0}}">驳回</view>
+      </view>
+
+      <view class="audit-info" wx:if="{{item.auditTime}}">
+        <text class="audit-text">审核时间：{{item.auditTime}}</text>
+        <text class="audit-text" wx:if="{{item.auditRemark}}">备注：{{item.auditRemark}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && merchants.length === 0}}">
+    <text class="empty-icon">🏪</text>
+    <text class="empty-text">暂无{{tabs[currentTab]}}商户</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 管理员固定底部导航栏 -->
+  <view class="admin-tabbar">
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="index">
+      <text class="admin-tabbar-icon">🏠</text>
+      <text class="admin-tabbar-text">工作台</text>
+    </view>
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="data">
+      <text class="admin-tabbar-icon">📊</text>
+      <text class="admin-tabbar-text">数据</text>
+    </view>
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="order">
+      <text class="admin-tabbar-icon">📋</text>
+      <text class="admin-tabbar-text">订单</text>
+    </view>
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="mine">
+      <text class="admin-tabbar-icon">👤</text>
+      <text class="admin-tabbar-text">我的</text>
+    </view>
+  </view>
+</view>

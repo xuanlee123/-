@@ -1,0 +1,64 @@
+<view class="publish-container">
+  <!-- 导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-back" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="nav-title">发布动态</text>
+    <view class="nav-submit {{submitting ? 'disabled' : ''}}" bindtap="submit">
+      <text>发布</text>
+    </view>
+  </view>
+
+  <!-- 内容输入 -->
+  <view class="content-area">
+    <textarea class="content-input"
+              value="{{content}}"
+              bindinput="onContentChange"
+              placeholder="分享你的生活点滴，和邻居一起互动吧..."
+              maxlength="500"
+              auto-height
+              show-confirm-bar="{{false}}">
+    </textarea>
+    <view class="content-count">
+      <text>{{content.length || 0}}/500</text>
+    </view>
+  </view>
+
+  <!-- 类型选择 -->
+  <view class="type-section">
+    <text class="section-label">分类</text>
+    <view class="type-list">
+      <view class="type-item {{selectedType === item.value ? 'active' : ''}}"
+            wx:for="{{types}}"
+            wx:key="value"
+            data-value="{{item.value}}"
+            bindtap="selectType">
+        <text>{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 图片上传 -->
+  <view class="image-section">
+    <text class="section-label">图片（选填，最多9张）</text>
+    <view class="image-list">
+      <view class="image-item" wx:for="{{images}}" wx:key="index">
+        <image src="{{item}}" mode="aspectFill" class="uploaded-img" data-src="{{item}}" bindtap="previewImage"></image>
+        <view class="remove-btn" data-index="{{index}}" bindtap="removeImage">✕</view>
+      </view>
+      <view class="add-image-btn" wx:if="{{images.length < maxImages}}" bindtap="chooseImage">
+        <text class="add-icon">+</text>
+        <text class="add-text">添加图片</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="submit-bar">
+    <button class="btn-submit {{submitting ? 'disabled' : ''}}" bindtap="submit" disabled="{{submitting}}">
+      <text wx:if="{{!submitting}}">发布动态</text>
+      <text wx:if="{{submitting}}">发布中...</text>
+    </button>
+  </view>
+</view>

@@ -1,0 +1,102 @@
+<view class="announcement-container">
+  <!-- 头部 -->
+  <view class="header-bar">
+    <text class="page-title">📢 公告管理</text>
+    <view class="btn-add" bindtap="openAddForm">
+      <text class="add-icon">➕</text>
+      <text class="add-text">发布公告</text>
+    </view>
+  </view>
+
+  <!-- 公告列表 -->
+  <view class="announcement-list" wx:if="{{!loading && announcements.length > 0}}">
+    <view class="announcement-card" wx:for="{{announcements}}" wx:key="id">
+      <view class="card-header">
+        <view class="announcement-icon" style="background-color: {{item.type == 1 ? '#FFF3E0' : '#E3F2FD'}}">
+          <text class="icon-text">{{item.type == 1 ? '🎉' : '📢'}}</text>
+        </view>
+        <view class="announcement-info">
+          <text class="announcement-title">{{item.title}}</text>
+          <text class="announcement-meta">创建于 {{item.createTime}}</text>
+        </view>
+        <view class="announcement-actions">
+          <view class="action-btn" bindtap="openEditForm" data-item="{{item}}">✏️</view>
+          <view class="action-btn" bindtap="publishAnnouncement" data-id="{{item.id}}" wx:if="{{item.status != 1}}">📤</view>
+          <view class="action-btn" bindtap="deleteAnnouncement" data-id="{{item.id}}">🗑️</view>
+        </view>
+      </view>
+      <view class="card-content">
+        <text class="content-preview">{{item.content}}</text>
+      </view>
+      <view class="card-footer">
+        <view class="stat-item">
+          <text class="stat-icon">👁️</text>
+          <text class="stat-value">{{item.readCount || 0}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-icon">🔗</text>
+          <text class="stat-value">{{item.shareCount || 0}}</text>
+        </view>
+        <view class="status-tag status-{{item.status}}">{{item.status == 1 ? '已发布' : '草稿'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && announcements.length == 0}}">
+    <text class="empty-text">暂无公告</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 发布/编辑表单 - 全屏居中弹窗 -->
+  <view class="form-overlay" wx:if="{{showForm}}">
+    <view class="form-overlay-mask" bindtap="closeForm"></view>
+    <view class="form-page">
+      <view class="form-page-header">
+        <text class="form-page-title">{{isEditing ? '编辑公告' : '发布公告'}}</text>
+        <view class="form-page-close" bindtap="closeForm">✕</view>
+      </view>
+      <view class="form-page-body">
+        <view class="form-group">
+          <text class="form-label">标题</text>
+          <input class="form-input" data-field="title" value="{{formData.title}}" bindinput="onFieldChange" placeholder="请输入公告标题" />
+        </view>
+        <view class="form-group">
+          <text class="form-label">类型</text>
+          <picker mode="selector" range="{{typeOptions}}" range-key="label" bindchange="onTypeChange">
+            <view class="form-picker-view">{{formData.typeLabel || '请选择'}}</view>
+          </picker>
+        </view>
+        <view class="form-group">
+          <text class="form-label">紧急程度</text>
+          <picker mode="selector" range="{{urgencyOptions}}" range-key="label" bindchange="onUrgencyChange">
+            <view class="form-picker-view">{{formData.urgencyLabel || '普通'}}</view>
+          </picker>
+        </view>
+        <view class="form-group">
+          <text class="form-label">封面图片</text>
+          <view class="form-image-upload" bindtap="chooseImage">
+            <image wx:if="{{formData.imageUrl}}" src="{{formData.imageUrl}}" mode="aspectFill" class="form-image-preview" />
+            <view wx:else class="form-image-placeholder">
+              <text class="form-image-icon">📷</text>
+              <text class="form-image-text">点击上传</text>
+            </view>
+          </view>
+          <text class="form-image-clear" wx:if="{{formData.imageUrl}}" catchtap="clearImage">✕ 清除</text>
+        </view>
+        <view class="form-group form-group-vertical">
+          <text class="form-label">内容</text>
+          <textarea class="form-textarea" data-field="content" value="{{formData.content}}" bindinput="onFieldChange" placeholder="请输入公告内容" />
+        </view>
+      </view>
+      <view class="form-page-footer">
+        <button class="btn-cancel" bindtap="closeForm">取消</button>
+        <button class="btn-submit" bindtap="submitForm">{{isEditing ? '保存' : '发布'}}</button>
+      </view>
+    </view>
+  </view>
+</view>

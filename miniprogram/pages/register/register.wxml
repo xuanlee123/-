@@ -1,0 +1,60 @@
+<!--pages/register/register.wxml - 论文风格注册页-->
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="logo-icon">🏠</view>
+    <text class="title">社区生活服务</text>
+    <text class="subtitle">创建您的账号</text>
+  </view>
+
+  <!-- 注册表单 -->
+  <view class="register-form">
+    <!-- 用户名 -->
+    <view class="input-item">
+      <view class="input-icon">👤</view>
+      <input class="input-field" type="text" placeholder="请输入用户名" bindinput="onUsernameInput" value="{{username}}" />
+    </view>
+
+    <!-- 手机号 -->
+    <view class="input-item">
+      <view class="input-icon">📱</view>
+      <input class="input-field" type="number" placeholder="请输入手机号" bindinput="onPhoneInput" value="{{phone}}" maxlength="11" />
+    </view>
+
+    <!-- 密码 -->
+    <view class="input-item">
+      <view class="input-icon">🔒</view>
+      <input class="input-field" type="password" placeholder="请设置登录密码" bindinput="onPasswordInput" value="{{password}}" />
+    </view>
+
+    <!-- 确认密码 -->
+    <view class="input-item">
+      <view class="input-icon">🔐</view>
+      <input class="input-field" type="password" placeholder="请确认密码" bindinput="onConfirmPasswordInput" value="{{confirmPassword}}" />
+    </view>
+
+    <!-- 用户类型 -->
+    <view class="role-section">
+      <text class="role-label">用户类型</text>
+      <view class="role-options">
+        <view class="role-option {{role === 1 ? 'active' : ''}}" bindtap="selectRole" data-role="1">
+          <text class="role-icon">👥</text>
+          <text class="role-text">居民</text>
+        </view>
+        <view class="role-option {{role === 2 ? 'active' : ''}}" bindtap="selectRole" data-role="2">
+          <text class="role-icon">🏪</text>
+          <text class="role-text">商户</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 注册按钮 -->
+    <button class="btn-register" bindtap="handleRegister">注册</button>
+
+    <!-- 登录链接 -->
+    <view class="login-link">
+      <text>已有账号？</text>
+      <text class="link-text" bindtap="goToLogin">立即登录</text>
+    </view>
+  </view>
+</view>

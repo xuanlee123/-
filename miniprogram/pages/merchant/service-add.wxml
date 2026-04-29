@@ -1,0 +1,71 @@
+<!-- pages/merchant/service-add.wxml -->
+<view class="container">
+  <!-- 基本信息 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="form-label required">服务名称</view>
+      <input class="form-input" placeholder="请输入服务名称" bindinput="onNameInput" value="{{name}}" maxlength="50"/>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label required">服务分类</view>
+      <view class="category-grid">
+        <view class="category-item {{categoryId === item.id ? 'selected' : ''}}"
+              wx:for="{{categories}}"
+              wx:key="id"
+              bindtap="selectCategory"
+              data-id="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label required">服务价格</view>
+      <view class="price-input-wrapper">
+        <input class="price-input" type="digit" placeholder="0.00" bindinput="onPriceInput" value="{{price}}" />
+      </view>
+      <view class="form-hint">输入服务的价格，单位：元</view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">服务描述</view>
+      <textarea class="form-textarea" placeholder="请输入服务描述，介绍服务的具体内容、时长、包含项目等" bindinput="onDescInput" value="{{description}}" maxlength="500"></textarea>
+      <view class="form-hint">{{description.length || 0}}/500</view>
+    </view>
+  </view>
+
+  <!-- 服务图片 -->
+  <view class="image-section">
+    <view class="image-label">服务图片</view>
+    <view class="image-grid">
+      <view class="image-item" wx:for="{{images}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"></image>
+        <view class="image-delete" bindtap="deleteImage" data-index="{{index}}">×</view>
+      </view>
+      <view class="add-image" wx:if="{{images.length < 5}}" bindtap="chooseImage">
+        <text class="add-icon">+</text>
+        <text class="add-text">添加图片</text>
+      </view>
+    </view>
+    <view class="form-hint" style="margin-top: 16rpx;">上传服务展示图片，最多5张</view>
+  </view>
+
+  <!-- 上架状态 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="switch-wrapper">
+        <view class="form-label" style="margin-bottom: 0;">上架服务</view>
+        <switch checked="{{status === 1}}" bindchange="onStatusChange" color="#2AA198"/>
+      </view>
+      <view class="form-hint">关闭后，用户将无法看到此服务</view>
+    </view>
+  </view>
+</view>
+
+<!-- 提交按钮 -->
+<view class="bottom-bar">
+  <button class="submit-btn" bindtap="submitForm" disabled="{{submitting}}">
+    {{submitting ? '提交中...' : (isEdit ? '保存修改' : '确认添加')}}
+  </button>
+</view>

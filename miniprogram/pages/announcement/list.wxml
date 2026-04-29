@@ -1,0 +1,33 @@
+<!--pages/announcement/list.wxml-->
+<view class="container">
+  <!-- 公告列表 -->
+  <view class="announcement-list">
+    <view class="announcement-item card" wx:for="{{announcements}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <view class="announcement-header">
+        <image wx:if="{{item.imageUrl}}" class="announcement-image" src="{{item.imageUrl}}" mode="aspectFill" />
+        <view class="announcement-content">
+          <view class="announcement-title-row">
+            <text class="announcement-title">{{item.title}}</text>
+            <text wx:if="{{item.urgency == 1}}" class="tag tag-danger">紧急</text>
+          </view>
+          <text class="announcement-text">{{item.content}}</text>
+          <view class="announcement-footer">
+            <text class="announcement-time">{{item.publishTime}}</text>
+            <view class="announcement-stats">
+              <text class="stat-item">阅读 {{item.readCount}}</text>
+              <text class="stat-item">分享 {{item.shareCount}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+  <view class="empty-state" wx:if="{{!loading && announcements.length === 0}}">
+    <text>暂无公告</text>
+  </view>
+</view>

@@ -1,0 +1,165 @@
+<!--pages/admin/evaluation.wxml - 管理员评价监管页面-->
+<view class="evaluation-container">
+  <!-- 头部 -->
+  <view class="header-bar">
+    <text class="page-title">⭐ 评价监管</text>
+  </view>
+
+  <!-- 统计数据 -->
+  <view class="stats-section">
+    <view class="stat-card">
+      <text class="stat-value">{{stats.totalCount || 0}}</text>
+      <text class="stat-label">全部评价</text>
+    </view>
+    <view class="stat-card warning">
+      <text class="stat-value">{{stats.pendingCount || 0}}</text>
+      <text class="stat-label">待审核</text>
+    </view>
+    <view class="stat-card danger">
+      <text class="stat-value">{{stats.negativeCount || 0}}</text>
+      <text class="stat-label">疑似差评</text>
+    </view>
+    <view class="stat-card success">
+      <text class="stat-value">{{stats.averageScore || '0.0'}}</text>
+      <text class="stat-label">平均评分</text>
+    </view>
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-tabs">
+    <view wx:for="{{tabs}}" wx:key="index"
+          class="filter-tab {{currentTab == index ? 'active' : ''}}"
+          data-idx="{{index}}"
+          bindtap="switchFilter">
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 评价列表 -->
+  <scroll-view scroll-y class="evaluation-list" bindscrolltolower="loadMore">
+    <view class="evaluation-card" wx:for="{{evaluations}}" wx:key="id">
+      <!-- 评价头部 -->
+      <view class="eval-header">
+        <view class="eval-user">
+          <view class="user-avatar">
+            <text class="avatar-text">{{item.userAvatarText || 'U'}}</text>
+          </view>
+          <view class="user-info">
+            <text class="user-name">{{item.userName || '用户' + item.userId}}</text>
+            <text class="eval-time">{{item.createTime}}</text>
+          </view>
+        </view>
+        <view class="eval-status status-{{item.statusClass}}">
+          {{item.statusText}}
+        </view>
+      </view>
+
+      <!-- 评分 -->
+      <view class="eval-score">
+        <text class="score-label">评分：</text>
+        <view class="stars">
+          <text class="star {{idx < item.score ? 'active' : ''}}" wx:for="{{[0,1,2,3,4]}}" wx:for-item="idx" wx:key="idx">★</text>
+        </view>
+        <text class="score-value">{{item.score}}分</text>
+      </view>
+
+      <!-- 评价内容 -->
+      <view class="eval-content" wx:if="{{item.content}}">
+        <text class="content-text">{{item.content}}</text>
+      </view>
+
+      <!-- 评价图片 -->
+      <view class="eval-images" wx:if="{{item.imageList.length > 0}}">
+        <image wx:for="{{item.imageList}}" wx:key="{{index}}"
+               class="eval-image"
+               src="{{item}}"
+               mode="aspectFill"
+               bindtap="previewImage"
+               data-images="{{item.imageList}}"
+               data-current="{{item}}"></image>
+      </view>
+
+      <!-- 商户信息 -->
+      <view class="eval-merchant">
+        <text class="merchant-label">商户：</text>
+        <text class="merchant-name">{{item.merchantName || '商户' + item.merchantId}}</text>
+      </view>
+
+      <!-- 订单信息 -->
+      <view class="eval-order">
+        <text class="order-label">订单：</text>
+        <text class="order-no">{{item.orderNo || 'ORD' + item.orderId}}</text>
+      </view>
+
+      <!-- 疑似差评标识 -->
+      <view class="negative-tag" wx:if="{{item.negative === 1}}">
+        <text class="tag-icon">⚠️</text>
+        <text class="tag-text">疑似差评</text>
+      </view>
+
+      <!-- 商户回复 -->
+      <view class="merchant-reply" wx:if="{{item.merchantReply}}">
+        <view class="reply-header">
+          <text class="reply-title">商户回复：</text>
+          <text class="reply-time">{{item.merchantReplyTime}}</text>
+        </view>
+        <text class="reply-content">{{item.merchantReply}}</text>
+      </view>
+
+      <!-- 审核信息 -->
+      <view class="audit-info" wx:if="{{item.status === 1 || item.status === 2}}">
+        <text class="audit-text">审核时间：{{item.auditTime}}</text>
+        <text class="audit-text" wx:if="{{item.auditRemark}}">备注：{{item.auditRemark}}</text>
+      </view>
+
+      <!-- 操作按钮 -->
+      <view class="eval-actions" wx:if="{{item.status === 0}}">
+        <view class="action-btn pass" bindtap="passEvaluation" data-id="{{item.id}}">通过</view>
+        <view class="action-btn reject" bindtap="rejectEvaluation" data-id="{{item.id}}">驳回</view>
+      </view>
+    </view>
+
+    <!-- 加载状态 -->
+    <view class="loading-more" wx:if="{{hasMore && evaluations.length > 0}}">
+      <text class="loading-text">加载中...</text>
+    </view>
+    <view class="no-more" wx:if="{{!hasMore && evaluations.length > 0}}">
+      <text class="no-more-text">没有更多评价了</text>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{evaluations.length === 0 && !loading}}">
+      <text class="empty-icon">⭐</text>
+      <text class="empty-text">暂无{{tabs[currentTab]}}评价</text>
+    </view>
+  </scroll-view>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading && evaluations.length === 0}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 管理员固定底部导航栏 -->
+  <view class="admin-tabbar">
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="index">
+      <text class="admin-tabbar-icon">🏠</text>
+      <text class="admin-tabbar-text">工作台</text>
+    </view>
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="data">
+      <text class="admin-tabbar-icon">📊</text>
+      <text class="admin-tabbar-text">数据</text>
+    </view>
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="order">
+      <text class="admin-tabbar-icon">📋</text>
+      <text class="admin-tabbar-text">订单</text>
+    </view>
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="evaluation">
+      <text class="admin-tabbar-icon">⭐</text>
+      <text class="admin-tabbar-text">评价</text>
+    </view>
+    <view class="admin-tabbar-item" bindtap="switchTab" data-tab="mine">
+      <text class="admin-tabbar-icon">👤</text>
+      <text class="admin-tabbar-text">我的</text>
+    </view>
+  </view>
+</view>
